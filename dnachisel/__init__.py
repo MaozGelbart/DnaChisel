@@ -20,6 +20,7 @@ from .builtin_specifications import (
     AvoidMatches,
     AvoidRareCodons,
     UniquifyAllKmers,
+    AvoidHeterodimerization,
     AvoidPattern,
     AvoidStopCodons,
     CodonOptimize,
