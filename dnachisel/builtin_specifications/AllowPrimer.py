@@ -62,19 +62,20 @@ class AllowPrimer(SpecificationSet):
         avoid_heterodim_with=None,
         max_heterodim_tm=5,
         avoided_repeats=((2, 5), (3, 4), (4, 3)),
+        boost=1.0,
     ):
         location = Location.from_data(location)
         specs = {
             "unique_sequence": UniquifyAllKmers(
-                k=max_homology_length, location=location
+                k=max_homology_length, location=location, boost=boost
             ),
             "melting_temperature": EnforceMeltingTemperature(
-                mini=tmin, maxi=tmax, location=location
+                mini=tmin, maxi=tmax, location=location, boost=boost
             ),
             **{
                 "repeats_%d_%d"
                 % (k, n): AvoidPattern(
-                    RepeatedKmerPattern(k, n), location=location
+                    RepeatedKmerPattern(k, n), location=location, boost=boost
                 )
                 for (k, n) in avoided_repeats
             },
@@ -84,5 +85,7 @@ class AllowPrimer(SpecificationSet):
                 other_primers_sequences=avoid_heterodim_with,
                 tmax=max_heterodim_tm,
                 location=location,
+                boost=boost,
             )
         self.register_specifications(specs)
+        self.boost = boost

@@ -137,7 +137,7 @@ class UniquifyAllKmers(Specification):
             reference = Location.from_tuple(reference)
         self.reference = reference
         self.include_reverse_complement = include_reverse_complement
-        self.boost = 1.0
+        self.boost = boost
         self.localization_data = localization_data
 
     def initialized_on_problem(self, problem, role="constraint"):

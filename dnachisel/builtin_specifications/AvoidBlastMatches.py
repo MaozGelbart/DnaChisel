@@ -55,6 +55,7 @@ class AvoidBlastMatches(Specification):
         e_value=1e80,
         culling_limit=1,
         location=None,
+        boost=1.0,
     ):
         """Initialize."""
         self.blast_db = blast_db
@@ -68,6 +69,7 @@ class AvoidBlastMatches(Specification):
         self.e_value = e_value
         self.ungapped = ungapped
         self.culling_limit = culling_limit
+        self.boost = boost
 
     def initialized_on_problem(self, problem, role=None):
         return self._copy_with_full_span_if_no_location(problem)

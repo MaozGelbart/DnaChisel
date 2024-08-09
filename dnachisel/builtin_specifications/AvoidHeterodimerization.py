@@ -36,6 +36,7 @@ class AvoidHeterodimerization(Specification):
         self.other_primers_sequences = other_primers_sequences
         self.tmax = tmax
         self.location = location
+        self.boost = boost
 
     def initialized_on_problem(self, problem, role=None):
         return self._copy_with_full_span_if_no_location(problem)

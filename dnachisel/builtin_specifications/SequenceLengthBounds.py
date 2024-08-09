@@ -20,9 +20,10 @@ class SequenceLengthBounds(Specification):
     """
     best_possible_score = 0
 
-    def __init__(self, min_length=0, max_length=None):
+    def __init__(self, min_length=0, max_length=None, boost=1.0):
         self.min_length = min_length
         self.max_length = max_length
+        self.boost = boost
 
     def evaluate(self, problem):
         """Return 0 if the sequence length is between the bounds, else -1"""
