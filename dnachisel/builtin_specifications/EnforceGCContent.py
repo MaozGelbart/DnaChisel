@@ -104,7 +104,7 @@ class EnforceGCContent(Specification):
             0, gc - self.maxi
         )
         score = -breaches.sum()
-        breaches_starts = wstart + (breaches > 0).nonzero()[0]
+        breaches_starts = wstart + (np.atleast_1d(breaches) > 0).nonzero()[0]
 
         if len(breaches_starts) == 0:
             breaches_locations = []
