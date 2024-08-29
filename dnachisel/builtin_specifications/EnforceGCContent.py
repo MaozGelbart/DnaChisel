@@ -100,8 +100,10 @@ class EnforceGCContent(Specification):
         wstart, wend = self.location.start, self.location.end
         sequence = self.location.extract_sequence(problem.sequence)
         gc = gc_content(sequence, window_size=self.window)
-        breaches = np.maximum(0, self.mini - gc) + np.maximum(
-            0, gc - self.maxi
+        breaches = np.atleast_1d(
+            np.maximum(0, self.mini - gc) + np.maximum(
+                0, gc - self.maxi
+            )
         )
         score = -breaches.sum()
         breaches_starts = wstart + (breaches > 0).nonzero()[0]
