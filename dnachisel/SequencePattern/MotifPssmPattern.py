@@ -150,7 +150,7 @@ class MotifPssmPattern(SequencePattern):
           sequence(s) with the absolute highest possible score".
         """
         if isinstance(motifs_file, str):
-            with open("./jaspar.txt", "r") as f:
+            with open(motifs_file, "r") as f:
                 motifs_list = motifs.parse(f, file_format)
         else:
             motifs_list = motifs.parse(motifs_file, file_format)
