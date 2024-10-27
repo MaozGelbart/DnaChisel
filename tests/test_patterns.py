@@ -37,3 +37,12 @@ def test_pssm_pattern_from_file(
     )
     assert len(multiple_patterns) == 2
     assert all([isinstance(p, MotifPssmPattern) for p in multiple_patterns])
+
+
+def test_pssm_from_sequences():
+    seqs = ['ACGT', 'ACCT', 'AAGT']
+    motif_name = "test motif"
+    pat = MotifPssmPattern.from_sequences(seqs, name=motif_name, relative_threshold=0.9)
+    assert isinstance(pat, MotifPssmPattern)
+    assert len(pat.find_matches_in_string("ACATACGTACAC")) == 1
+    assert len(pat.find_matches_in_string("ACATAATTACAC")) == 0
