@@ -16,7 +16,7 @@ class MotifPssmPattern(SequencePattern):
     ----------
 
     pssm
-      A Bio.Align.AlignInfo.PSSM object.
+      A `Bio.motifs.Motif` object.
 
     threshold
      locations of the sequence with a PSSM score above this value will be
@@ -32,6 +32,10 @@ class MotifPssmPattern(SequencePattern):
     def __init__(
         self, pssm, threshold=None, relative_threshold=None,
     ):
+        if not isinstance(pssm, Bio.motifs.Motif):
+            raise ValueError(
+                f"Expected PSSM type of `Bio.motifs.Motif`, but {type(pssm)} was passed"
+            )
         self.name = pssm.name
         self.pssm = pssm.pssm
         if relative_threshold is not None:
@@ -108,8 +112,8 @@ class MotifPssmPattern(SequencePattern):
         sequences = [Seq(s) for s in sequences]
         motif = motifs.create(sequences)
         cls.apply_pseudocounts(motif, pseudocounts)
-        pssm = PSSM(motif.pssm)
-        pssm.name = name
+        motif.name = name
+        pssm = motif
         return MotifPssmPattern(
             pssm=pssm, threshold=threshold, relative_threshold=relative_threshold,
         )
