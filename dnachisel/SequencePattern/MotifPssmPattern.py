@@ -1,7 +1,5 @@
-import Bio
 from Bio.Seq import Seq
 from Bio import motifs
-from Bio.Align.AlignInfo import PSSM
 from .SequencePattern import SequencePattern
 import numpy as np
 
@@ -31,7 +29,7 @@ class MotifPssmPattern(SequencePattern):
     """
 
     def __init__(self, pssm, threshold=None, relative_threshold=None):
-        if not isinstance(pssm, Bio.motifs.Motif):
+        if not isinstance(pssm, motifs.Motif):
             raise ValueError(
                 f"Expected PSSM type of `Bio.motifs.Motif`, but {type(pssm)} was passed"
             )
