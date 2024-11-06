@@ -1,3 +1,4 @@
+import Bio
 from Bio.Seq import Seq
 from Bio import motifs
 from Bio.Align.AlignInfo import PSSM
@@ -30,7 +31,10 @@ class MotifPssmPattern(SequencePattern):
     """
 
     def __init__(
-        self, pssm, threshold=None, relative_threshold=None,
+        self,
+        pssm,
+        threshold=None,
+        relative_threshold=None,
     ):
         if not isinstance(pssm, Bio.motifs.Motif):
             raise ValueError(
@@ -70,7 +74,9 @@ class MotifPssmPattern(SequencePattern):
         #     sequence, threshold=self.threshold, both=False
         # )
         indices = find_pssm_matches_with_numpy(
-            pssm_matrix=self.pssm_matrix, sequence=sequence, threshold=self.threshold,
+            pssm_matrix=self.pssm_matrix,
+            sequence=sequence,
+            threshold=self.threshold,
         )
         return [(i, i + self.size, 1) for i in indices]
 
@@ -115,7 +121,9 @@ class MotifPssmPattern(SequencePattern):
         motif.name = name
         pssm = motif
         return MotifPssmPattern(
-            pssm=pssm, threshold=threshold, relative_threshold=relative_threshold,
+            pssm=pssm,
+            threshold=threshold,
+            relative_threshold=relative_threshold,
         )
 
     @classmethod
@@ -164,7 +172,9 @@ class MotifPssmPattern(SequencePattern):
 
         return [
             MotifPssmPattern(
-                pssm, threshold=threshold, relative_threshold=relative_threshold,
+                pssm,
+                threshold=threshold,
+                relative_threshold=relative_threshold,
             )
             for pssm in motifs_list
         ]
