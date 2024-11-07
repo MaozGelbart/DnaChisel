@@ -11,7 +11,6 @@ from ..Location import Location
 from ..Specification import Specification, SpecEvaluation
 
 
-
 class EnforceMeltingTemperature(Specification):
     """Ensure that the subsequence's Tm is in a certain segment/target.
 
@@ -39,13 +38,11 @@ class EnforceMeltingTemperature(Specification):
 
     shorthand_name = "tm"
 
-    def __init__(
-        self, mini=None, maxi=None, target=None, location=None, boost=1.0
-    ):
+    def __init__(self, mini=None, maxi=None, target=None, location=None, boost=1.0):
         """Initialize."""
-        if isinstance(mini, str) and mini.endswith('C'):
+        if isinstance(mini, str) and mini.endswith("C"):
             # PROCESS CASES "45-55%" and "45%"
-            split = mini[:-1].split('-')
+            split = mini[:-1].split("-")
             if len(split) == 2:
                 mini, maxi = float(split[0]), float(split[1])
             else:
