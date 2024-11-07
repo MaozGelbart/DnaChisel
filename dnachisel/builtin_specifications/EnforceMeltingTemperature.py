@@ -57,7 +57,7 @@ class EnforceMeltingTemperature(Specification):
         self.location = Location.from_data(location)
         self.boost = boost
 
-    def initialize_on_problem(self, problem, role=None):
+    def initialized_on_problem(self, problem, role=None):
         return self._copy_with_full_span_if_no_location(problem)
 
     def evaluate(self, problem):
