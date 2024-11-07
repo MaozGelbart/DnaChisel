@@ -33,7 +33,7 @@ For more information, please see the publication.
 
 
 Citation
-~~~~~~~~
+--------
 
 DNA Chisel, a versatile sequence optimizer, *Valentin Zulkower, Susan Rosser.* `Bioinformatics <https://academic.oup.com/bioinformatics/article/36/16/4508/5869515>`_ (2020) 36, 16, 4508–4509
 
