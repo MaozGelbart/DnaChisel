@@ -26,8 +26,16 @@ composed to, for instance, codon-optimize genes, meet the constraints of a
 commercial DNA provider, avoid homologies between sequences, tune GC content,
 or all of this at once! Users can also define their own specifications using
 Python, making the library suitable for a large range of automated sequence
-design applications, and complex custom design projects.
+design applications, and complex custom design projects. A specification can be
+either a hard constraint, which must be satisfied in the final sequence, or an
+optimization objective, whose score must be maximized.
+For more information, please see the publication.
 
+
+Citation
+~~~~~~~~
+
+DNA Chisel, a versatile sequence optimizer, *Valentin Zulkower, Susan Rosser.* `Bioinformatics <https://academic.oup.com/bioinformatics/article/36/16/4508/5869515>`_ (2020) 36, 16, 4508–4509
 
 
 Usage
