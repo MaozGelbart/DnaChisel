@@ -63,15 +63,15 @@ def CodonOptimize(
       When the method is 'harmonize_rca', this is the native species of the
       original coding sequence. Same characteristics as parameter ``species``
       above.
-  
+
     original_codon_usage_table
       Optional codon usage table of the original sequence's native species.
       A dict of the form ``{'*': {"TGA": 0.112, "TAA": 0.68}, 'K': ...}``
       giving the codon usage table.
-  
+
     References
     ==========
-  
+
     Claassens et. al., Improving heterologous membrane protein
     production in Escherichia coli by combining transcriptional tuning and
     codon usage algorithms. PLOS One, 2017
@@ -105,5 +105,5 @@ def CodonOptimize(
             original_codon_usage_table=original_codon_usage_table,
             boost=boost,
         )
-    raise ValueError("Parameter 'mode' should be one of best_codon, "
-                     "match_usage, ")
+    raise ValueError("`method` must be 'use_best_codon', 'match_codon_usage' "
+                     f"or 'harmonize_rca', not {method!r}")
