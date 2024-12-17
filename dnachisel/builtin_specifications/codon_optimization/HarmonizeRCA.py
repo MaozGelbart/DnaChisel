@@ -117,7 +117,7 @@ class HarmonizeRCA(BaseCodonOptimizationClass):
         return new_spec
 
     def evaluate(self, problem):
-        """Return the evaluation for mode==best_codon."""
+        """Return the evaluation for method=="harmonize_rca"."""
         codons = self.get_codons(problem)
 
         if len(codons) == 1:
@@ -165,7 +165,14 @@ class HarmonizeRCA(BaseCodonOptimizationClass):
             return [self.original_species + " -> " + self.species]
 
     def short_label(self):
-        result = "best-codon-optimize"
+        short_label = "harmonize-rca ("
         if self.species is not None:
-            result += " (%s)" % self.species
-        return result
+            target_species = self.species
+        else:
+            target_species = "custom table"
+        if self.original_species is not None:
+            original_species = self.original_species
+        else:
+            original_species = "custom table"
+        result += " (%s)" % self.species
+        return short_label + original_species + " -> " + target_species + ")"
