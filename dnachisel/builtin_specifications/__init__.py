@@ -39,6 +39,7 @@ DEFAULT_SPECIFICATIONS_DICT = {
     "AvoidPattern": AvoidPattern,
     "CodonOptimize": CodonOptimize,
     "EnforceGCContent": EnforceGCContent,
+    "EnforceMeltingTemperature": EnforceMeltingTemperature,
     "EnforcePatternOccurence": EnforcePatternOccurence,
     "EnforceTranslation": EnforceTranslation,
     "EnforceRegionsCompatibility": EnforceRegionsCompatibility,
@@ -47,7 +48,7 @@ DEFAULT_SPECIFICATIONS_DICT = {
     "EnforceChanges": EnforceChanges,
     "HarmonizeRCA": HarmonizeRCA,
     "MaximizeCAI": MaximizeCAI,
-    "MatchTargetCodonUsage": MatchTargetCodonUsage
+    "MatchTargetCodonUsage": MatchTargetCodonUsage,
 }
 
 # Add the shorthands to the specifications dict.
