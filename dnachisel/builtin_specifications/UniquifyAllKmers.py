@@ -34,9 +34,9 @@ def get_kmer_extractor(sequence, include_reverse_complement=True, k=1):
 @lru_cache(maxsize=1)
 def get_kmer_extractor_cached(sequence, include_reverse_complement=True, k=1):
     """Kmer extractor with memoization.
-    
+
     This globally cached method enables much faster computations when
-    several UniquifyAllKmers functions with equal k are used. 
+    several UniquifyAllKmers functions with equal k are used.
     """
     L = len(sequence)
     if include_reverse_complement:
@@ -89,7 +89,7 @@ class UniquifyAllKmers(Specification):
     ----------
     k
       Minimal length of sequences to be considered repeats
-    
+
     reference
       The default None indicates that the specification's location should have
       no homologies anywhere in the whole sequence. If reference="here", then
@@ -117,7 +117,7 @@ class UniquifyAllKmers(Specification):
 
     best_possible_score = 0
     use_cache = True
-    shorthand_name = 'all_unique_kmers'
+    shorthand_name = "all_unique_kmers"
 
     def __init__(
         self,
@@ -176,12 +176,8 @@ class UniquifyAllKmers(Specification):
                 nonunique_locations += indices
         location_variable_kmers = set(variable_kmers["location"].keys())
         extended_variable_kmers = set(variable_kmers["extended"].keys())
-        fixed_location_kmers = self.localization_data["location"][
-            "fixed_kmers"
-        ]
-        extended_fixed_kmers = self.localization_data["extended"][
-            "fixed_kmers"
-        ]
+        fixed_location_kmers = self.localization_data["location"]["fixed_kmers"]
+        extended_fixed_kmers = self.localization_data["extended"]["fixed_kmers"]
 
         for c in [
             extended_variable_kmers,
@@ -200,9 +196,7 @@ class UniquifyAllKmers(Specification):
                 for kmer in extended_variable_kmers.intersection(c)
                 for i in variable_kmers["extended"][kmer]
             ]
-        nonunique_locations = [
-            Location(i, i + self.k) for i in nonunique_locations
-        ]
+        nonunique_locations = [Location(i, i + self.k) for i in nonunique_locations]
         return SpecEvaluation(
             self,
             problem,
@@ -227,7 +221,7 @@ class UniquifyAllKmers(Specification):
         extract_kmer = self.get_kmer_extractor(problem.sequence)
         kmers_locations = defaultdict(lambda: [])
         start, end = self.reference.start, self.reference.end
-        for i in range(start, end - self.k):
+        for i in range(start, end - self.k + 1):
             location = (i, i + self.k)
             kmer_sequence = extract_kmer(i)
             kmers_locations[kmer_sequence].append(location)
@@ -238,7 +232,7 @@ class UniquifyAllKmers(Specification):
                 for locations_list in kmers_locations.values()
                 for start_, end_ in locations_list
                 if len(locations_list) > 1
-                and (self.location.start <= start_ < end_ < self.location.end)
+                and (self.location.start <= start_ < end_ <= self.location.end)
             ],
             key=lambda l: l.start,
         )
@@ -299,7 +293,9 @@ class UniquifyAllKmers(Specification):
         new_location = None if self.location is None else self.location + shift
         reference = None if self.reference is None else self.reference + shift
         return self.copy_with_changes(
-            location=new_location, reference=reference, derived_from=self,
+            location=new_location,
+            reference=reference,
+            derived_from=self,
         )
 
     def label_parameters(self):
@@ -307,6 +303,6 @@ class UniquifyAllKmers(Specification):
 
     def short_label(self):
         return "All %dbp unique" % self.k
-    
+
     def breach_label(self):
         return "%dbp homologies" % self.k

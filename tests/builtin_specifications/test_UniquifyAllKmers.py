@@ -5,6 +5,7 @@ from dnachisel import (
 )
 import numpy
 
+
 # Note: we are not providing a location for AvoidChanges: it applies globally
 def test_UniquifyAllKmers_as_constraint():
     numpy.random.seed(123)
@@ -55,3 +56,12 @@ def test_UniquifyAllKmers_include_reverse_complement_false():
     constraint = UniquifyAllKmers(10, include_reverse_complement=False)
     problem = DnaOptimizationProblem(sequence=40 * "A", constraints=[constraint])
     problem.constraints_text_summary()
+
+
+# issue 95
+def test_UniquifyAllKmers_at_ends():
+    sequence = "AGTTC" + "CCGGTC" + "AGTTC"
+    problem = DnaOptimizationProblem(
+        sequence=sequence, constraints=[UniquifyAllKmers(k=5)]
+    )
+    assert not problem.all_constraints_pass()
