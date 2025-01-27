@@ -20,6 +20,10 @@ class MatchTargetCodonUsage(BaseCodonOptimizationClass):
     host-to-target codon harmonization. See DnaChisel's HarmonizeRCA class
     for Codon Harmonization.
 
+    Warning: always use this specification with an EnforceTranslation constraint
+    defined over the same location, to preserve the amino acid sequence.
+
+
     Parameters
     ----------
 
@@ -71,9 +75,7 @@ class MatchTargetCodonUsage(BaseCodonOptimizationClass):
 
     shorthand_name = "match_codon_usage"
 
-    def __init__(
-        self, species=None, location=None, codon_usage_table=None, boost=1.0
-    ):
+    def __init__(self, species=None, location=None, codon_usage_table=None, boost=1.0):
         BaseCodonOptimizationClass.__init__(
             self,
             species=species,
@@ -130,8 +132,7 @@ class MatchTargetCodonUsage(BaseCodonOptimizationClass):
             problem,
             score=score,
             locations=locations,
-            message="Codon opt. on window %s scored %.02E"
-            % (self.location, score),
+            message="Codon opt. on window %s scored %.02E" % (self.location, score),
         )
 
     def localized_on_window(self, new_location, start_codon, end_codon):
@@ -177,9 +178,7 @@ class MatchTargetCodonUsage(BaseCodonOptimizationClass):
         for i, codon in enumerate(codons):
             codons_positions[codon].append(i)
         # aa: amino-acid
-        codons_frequencies = {
-            aa: {"total": 0} for aa in self.codon_usage_table
-        }
+        codons_frequencies = {aa: {"total": 0} for aa in self.codon_usage_table}
         for codon, positions in codons_positions.items():
             count = len(positions)
             aa = self.codons_translations[codon]
@@ -191,9 +190,7 @@ class MatchTargetCodonUsage(BaseCodonOptimizationClass):
                 if codon != "total":
                     data[codon] = 1.0 * value / total
         codons_frequencies = {
-            aa: data
-            for aa, data in codons_frequencies.items()
-            if data["total"]
+            aa: data for aa, data in codons_frequencies.items() if data["total"]
         }
         comparisons = {
             aa: {
@@ -209,6 +206,7 @@ class MatchTargetCodonUsage(BaseCodonOptimizationClass):
             return dict_to_pretty_string(comparisons)
         else:
             return codons_positions, comparisons
+
     def short_label(self):
         result = "match-codon-usage"
         if self.species is not None:

@@ -12,3 +12,6 @@ optimization that one can find in the literature.
 
 Finally, ``CodonOptimize`` is a generic pseudo-specification-class which uses a "mode"
 parameter to return a specification of one of the above classes.
+
+Warning: always use this specification with an EnforceTranslation constraint defined
+over the same location, to preserve the amino acid sequence.

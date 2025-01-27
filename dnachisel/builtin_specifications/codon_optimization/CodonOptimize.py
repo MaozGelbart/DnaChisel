@@ -10,7 +10,7 @@ def CodonOptimize(
     codon_usage_table=None,
     original_species=None,
     original_codon_usage_table=None,
-    boost=1.0
+    boost=1.0,
 ):
     """Codon-optimize a coding sequence using a user-selected method.
 
@@ -27,6 +27,10 @@ def CodonOptimize(
     - For method="harmonize_rca", Each codon will be replaced by a synonymous
       codon whose usage in the target organism matches the usage of the
       original codon in its host organism (as per Claassens 2017).
+
+    Warning: always use this specification with an EnforceTranslation constraint
+    defined over the same location, to preserve the amino acid sequence.
+
 
     Parameters
     ==========
@@ -105,5 +109,7 @@ def CodonOptimize(
             original_codon_usage_table=original_codon_usage_table,
             boost=boost,
         )
-    raise ValueError("`method` must be 'use_best_codon', 'match_codon_usage' "
-                     f"or 'harmonize_rca', not {method!r}")
+    raise ValueError(
+        "`method` must be 'use_best_codon', 'match_codon_usage' "
+        f"or 'harmonize_rca', not {method!r}"
+    )

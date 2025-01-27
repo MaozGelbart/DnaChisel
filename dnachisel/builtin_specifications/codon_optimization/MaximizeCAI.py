@@ -20,6 +20,10 @@ class MaximizeCAI(BaseCodonOptimizationClass):
 
     This score is between -inf. and 0 (0 meaning a perfectly optimal sequence).
 
+    Warning: always use this specification with an EnforceTranslation constraint
+    defined over the same location, to preserve the amino acid sequence.
+
+
     Parameters
     ----------
 
@@ -65,9 +69,7 @@ class MaximizeCAI(BaseCodonOptimizationClass):
 
     shorthand_name = "use_best_codon"
 
-    def __init__(
-        self, species=None, location=None, codon_usage_table=None, boost=1.0
-    ):
+    def __init__(self, species=None, location=None, codon_usage_table=None, boost=1.0):
         BaseCodonOptimizationClass.__init__(
             self,
             species=species,
@@ -105,12 +107,10 @@ class MaximizeCAI(BaseCodonOptimizationClass):
                 problem,
                 score=freq - optimal,
                 locations=[] if (freq == optimal) else [self.location],
-                message="Codon opt. on window %s scored %.02E"
-                % (self.location, score),
+                message="Codon opt. on window %s scored %.02E" % (self.location, score),
             )
         current_usage = [
-            self.codon_usage_table["log_codons_frequencies"][codon]
-            for codon in codons
+            self.codon_usage_table["log_codons_frequencies"][codon] for codon in codons
         ]
         optimal_usage = [
             self.codon_usage_table["log_best_frequencies"][ct[codon]]
@@ -125,8 +125,7 @@ class MaximizeCAI(BaseCodonOptimizationClass):
             problem,
             score=score,
             locations=locations,
-            message="Codon opt. on window %s scored %.02E"
-            % (self.location, score),
+            message="Codon opt. on window %s scored %.02E" % (self.location, score),
         )
 
     def label_parameters(self):
@@ -137,4 +136,3 @@ class MaximizeCAI(BaseCodonOptimizationClass):
         if self.species is not None:
             result += " (%s)" % self.species
         return result
-

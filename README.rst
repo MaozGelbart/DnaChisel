@@ -64,7 +64,7 @@ The example below will generate a random sequence and optimize it so that:
             EnforceTranslation(location=(500, 1400))
         ],
         objectives=[CodonOptimize(species='e_coli', location=(500, 1400))]
-    )
+    )  # Note: always use a codon optimisation specification with EnforceTranslation
 
     # SOLVE THE CONSTRAINTS, OPTIMIZE WITH RESPECT TO THE OBJECTIVE
 

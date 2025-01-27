@@ -20,6 +20,9 @@ class EnforceTranslation(CodonSpecification):
 
     Shorthand for annotations: "cds".
 
+    Note: always use a codon optimisation specification with EnforceTranslation.
+
+
     Parameters
     -----------
 
@@ -98,10 +101,7 @@ class EnforceTranslation(CodonSpecification):
                 len(location) != 3 * len(self.translation)
             ):
                 raise ValueError(
-                    (
-                        "Window size (%d bp) incompatible with translation "
-                        "(%d aa)"
-                    )
+                    ("Window size (%d bp) incompatible with translation " "(%d aa)")
                     % (len(location), len(self.translation))
                 )
         self.location = location
@@ -119,10 +119,7 @@ class EnforceTranslation(CodonSpecification):
             result = result.copy_with_changes(translation=translation)
         if len(result.location) != 3 * len(result.translation):
             raise ValueError(
-                (
-                    "Window size (%d bp) incompatible with translation "
-                    "(%d aa)"
-                )
+                ("Window size (%d bp) incompatible with translation " "(%d aa)")
                 % (len(result.location), len(result.translation))
             )
         if (result.start_codon is not None) and result.translation[0] != "M":
@@ -163,9 +160,11 @@ class EnforceTranslation(CodonSpecification):
             problem,
             score=-len(errors_locations),
             locations=errors_locations,
-            message="All OK."
-            if len(errors_locations) == 0
-            else "Wrong translation at locations %s" % errors_locations,
+            message=(
+                "All OK."
+                if len(errors_locations) == 0
+                else "Wrong translation at locations %s" % errors_locations
+            ),
         )
 
     def localized_on_window(self, new_location, start_codon, end_codon):
@@ -179,7 +178,7 @@ class EnforceTranslation(CodonSpecification):
             translation=new_translation,
             boost=self.boost,
             genetic_table=self.genetic_table,
-            start_codon=self.start_codon if location_is_at_start else None
+            start_codon=self.start_codon if location_is_at_start else None,
             # has_start_codon=self.has_start_codon and location_is_at_start,
         )
 
@@ -196,11 +195,10 @@ class EnforceTranslation(CodonSpecification):
                 return [first_codon]
             else:
                 return [self.start_codon]  # "ATG"
+
         first_codon_location = self.codon_index_to_location(0)
         first_codon = first_codon_location.extract_sequence(sequence)
-        choices = [
-            (first_codon_location, get_first_codon_choices(first_codon))
-        ] + [
+        choices = [(first_codon_location, get_first_codon_choices(first_codon))] + [
             (self.codon_index_to_location(i), self.backtranslation_table[aa])
             for i, aa in list(enumerate(self.translation))[1:]
         ]
@@ -221,6 +219,6 @@ class EnforceTranslation(CodonSpecification):
 
     def short_label(self):
         return "cds"
-    
+
     def breach_label(self):
         return "protein sequence changed"

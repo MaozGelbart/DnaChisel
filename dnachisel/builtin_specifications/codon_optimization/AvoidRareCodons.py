@@ -11,8 +11,8 @@ class AvoidRareCodons(BaseCodonOptimizationClass):
     This can be seen as a "mild" form of codon optimization where only rare
     codons (which slow down protein synthesis) are considered.
 
-    WARNING: Make sure to always use this specification with EnforceTranslation
-    to preserve the amino-acid sequence.
+    Warning: always use this specification with an EnforceTranslation constraint
+    defined over the same location, to preserve the amino acid sequence.
 
     Shorthand for annotations: "no_rare_codons".
 
@@ -25,7 +25,7 @@ class AvoidRareCodons(BaseCodonOptimizationClass):
       Name or TaxID of the species for which to optimize the sequence. A custom
       codon_usage_table can be provided instead (or in addition, for species
       names whose codon usage table cannot be imported).
-    
+
     codon_usage_table
       Optional codon usage table of the species for which the sequence will be
       codon-optimized, which can be provided instead of ``species``. A dict of
@@ -111,17 +111,17 @@ class AvoidRareCodons(BaseCodonOptimizationClass):
             problem,
             score=score,
             locations=locations,
-            message="All OK."
-            if len(locations) == 0
-            else "Rare codons at locations %s" % locations,
+            message=(
+                "All OK."
+                if len(locations) == 0
+                else "Rare codons at locations %s" % locations
+            ),
         )
 
     def restrict_nucleotides(self, sequence, location=None):
         nonrare_codons = list(self.nonrare_codons)
         if self.location.strand == -1:
-            nonrare_codons = sorted(
-                [reverse_complement(c) for c in nonrare_codons]
-            )
+            nonrare_codons = sorted([reverse_complement(c) for c in nonrare_codons])
         return [
             ((i, i + 3), nonrare_codons)
             for i in range(self.location.start, self.location.end, 3)

@@ -27,7 +27,8 @@ class HarmonizeRCA(BaseCodonOptimizationClass):
     algorithm (Angov 2008), which was much more complicated as it involved
     predicting "ribosome pausing" sites in the sequence.
 
-    Warning: always use with an EnforceTranslation constraint.
+    Warning: always use this specification with an EnforceTranslation constraint
+    defined over the same location, to preserve the amino acid sequence.
 
 
     Parameters
