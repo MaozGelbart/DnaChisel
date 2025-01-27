@@ -4,7 +4,7 @@ from dnachisel.builtin_specifications import (
 )
 
 
-def test_enforce_metling_temperature():
+def test_enforce_melting_temperature():
     """Test by creating a new primer."""
     # Test issue #89
     problem = DnaOptimizationProblem(
