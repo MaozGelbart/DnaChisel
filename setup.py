@@ -33,7 +33,7 @@ setup(
     scripts=["scripts/dnachisel"],
     install_requires=[
         "numpy",
-        "Biopython",
+        "biopython",
         "proglog",
         "docopt",
         "flametree",
