@@ -281,6 +281,7 @@ parameter:
     src='../_static/images/genbank_annotations/all_unique_kmers_here.png'></img>
 
 You can also avoid matches with a given organism you can also use ``avoid_matches``
+
 .. raw:: html
 
     <img class='annotation-example'

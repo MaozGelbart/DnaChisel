@@ -46,25 +46,29 @@ class MutationChoice:
         return variants[np.random.randint(len(variants))]
 
     def merge_with(self, others):
-        """Merge this mutation choice with others to form a single choice
+        """Merge this mutation choice with others to form a single choice.
 
-         Examples:
-         ---------
+        This method returns the only choices on the full interval which are compatible
+        with at least one choice in each of the MutationChoices.
 
-         >>> ((2, 5), {'ATT', 'ATA'})
+        Examples:
+        ---------
 
-        merged with:
+        Consider the following:
 
-         >>> [
-         >>>     ((0, 3), {'GTA', 'GCT', 'GTT'}),
-         >>>     ((3, 4), {'A', 'T', 'G', 'C'}),
-         >>>     ((4, 7), {'ATG', 'ACC', 'CTG'})
-         >>> ]
+        >>> ((2, 5), {'ATT', 'ATA'})
 
-         returns the only choices on the full interval which are compatible with
-         at least one choice in each of the MutationChoices
-         >>> (0, 7), {'GTATACC', 'GTATATG'}
+        To be merged with:
 
+        >>> [
+        >>>     ((0, 3), {'GTA', 'GCT', 'GTT'}),
+        >>>     ((3, 4), {'A', 'T', 'G', 'C'}),
+        >>>     ((4, 7), {'ATG', 'ACC', 'CTG'})
+        >>> ]
+
+        The result will be:
+
+        >>> (0, 7), {'GTATACC', 'GTATATG'}
         """
         others = sorted(others, key=lambda o: o.start)
         others_start = others[0].start

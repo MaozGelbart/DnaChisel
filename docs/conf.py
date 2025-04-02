@@ -12,12 +12,14 @@
 # serve to show the default.
 
 import os
+import sys
 import dnachisel
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-# sys.path.insert(0, os.path.abspath('.'))
+
+sys.path.insert(0, os.path.abspath("../dnachisel/"))
 
 # -- General configuration -----------------------------------------------------
 
@@ -28,13 +30,14 @@ import dnachisel
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
     "sphinx.ext.autodoc",
+    "sphinx.ext.napoleon",
     "sphinx.ext.todo",
     "sphinx.ext.viewcode",
-    "numpydoc",
+    # "numpydoc",
     "sphinx.ext.githubpages",
     "sphinx.ext.autosummary",
-    "sphinxcontrib.mermaid",
-    "recommonmark",
+    # "sphinxcontrib.mermaid",  # not currently used in documentation
+    # "recommonmark",
 ]
 numpydoc_show_class_members = False
 # Add any paths that contain templates here, relative to this directory.
@@ -50,8 +53,8 @@ pygments_style = "monokai"
 master_doc = "index"
 
 # General information about the project.
-project = u"DNA Chisel"
-copyright = u"2019, Edinburgh Genome Foundry"
+project = "DNA Chisel"
+copyright = "2017, 2019 Edinburgh Genome Foundry, University of Edinburgh"
 
 html_theme_options = {
     "external_links": [
@@ -133,7 +136,7 @@ html_css_files = ["css/press_main.css"]
 
 
 def setup(app):
-    app.add_stylesheet("css/press_main.css")
+    app.add_css_file("css/press_main.css")
 
 
 # sys.path.append(os.path.abspath('_themes'))
@@ -225,7 +228,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-    ("index", "DnaChisel.tex", u"DnaChisel Documentation", u"Zulko", "manual")
+    ("index", "DnaChisel.tex", "DnaChisel Documentation", "Zulko", "manual")
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -253,9 +256,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [
-    ("index", "DnaChisel", u"PACKAGE_NAME Documentation", [u"Zulko"], 1)
-]
+man_pages = [("index", "DnaChisel", "PACKAGE_NAME Documentation", ["Zulko"], 1)]
 
 # If true, show URL addresses after external links.
 # man_show_urls = False
@@ -270,8 +271,8 @@ texinfo_documents = [
     (
         "index",
         "DnaChisel",
-        u"DnaChisel Documentation",
-        u"Zulko",
+        "DnaChisel Documentation",
+        "Zulko",
         "DnaChisel",
         "One line description of project.",
         "Miscellaneous",
@@ -294,10 +295,10 @@ texinfo_documents = [
 # -- Options for Epub output ---------------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = u"DnaChisel"
-epub_author = u"Zulko"
-epub_publisher = u"Zulko"
-epub_copyright = u"2016, Zulko"
+epub_title = "DnaChisel"
+epub_author = "Zulko"
+epub_publisher = "Zulko"
+epub_copyright = "2016, Zulko"
 
 # The language of the text. It defaults to the language option
 # or en if the language is not set.
@@ -349,4 +350,3 @@ epub_copyright = u"2016, Zulko"
 # epub_use_index = True
 
 # autodoc_member_order = 'bysource'
-
