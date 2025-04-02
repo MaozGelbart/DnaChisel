@@ -8,6 +8,7 @@ from dnachisel import (
     DnaOptimizationProblem,
     AvoidPattern,
     AvoidChanges,
+    HarmonizeRCA,
 )
 from dnachisel.reports.tools import install_extras_message
 from dnachisel.reports.constraints_reports.constraints_breaches_dataframe import (
@@ -18,6 +19,13 @@ from dnachisel.reports.constraints_reports.constraints_breaches_dataframe import
 def test_optimize_with_report(tmpdir):
     problem = DnaOptimizationProblem(
         sequence=random_dna_sequence(10000, seed=123),
+        objectives=[
+            HarmonizeRCA(
+                species="e_coli",
+                location=(0, 30),
+                original_species="h_sapiens",
+            )
+        ],
         constraints=[AvoidPattern("BsmBI_site")],
         logger=None,
     )
