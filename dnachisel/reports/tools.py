@@ -1,6 +1,7 @@
 import hashlib
 import base64
 
+
 def install_extras_message(libname):
     return (
         "Could not load %s (is it installed ?). You can install it separately "

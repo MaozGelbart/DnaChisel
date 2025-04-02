@@ -21,10 +21,7 @@ class ProblemObjectivesEvaluations(SpecEvaluations):
 
         """
         return ProblemObjectivesEvaluations(
-            [
-                specification.evaluate(problem)
-                for specification in problem.objectives
-            ],
+            [specification.evaluate(problem) for specification in problem.objectives],
             problem=problem,
         )
 

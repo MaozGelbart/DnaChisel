@@ -3,6 +3,7 @@
 The class has useful methods for finding overlaps between locations, extract
 a subsequence from a sequence, etc.
 """
+
 from functools import total_ordering
 
 from Bio.SeqFeature import FeatureLocation, SeqFeature

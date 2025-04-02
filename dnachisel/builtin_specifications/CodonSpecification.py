@@ -1,4 +1,5 @@
 """Implements core specification VoidSpecification."""
+
 from ..Specification import Specification
 
 # from .VoidSpecification import VoidSpecification
@@ -17,7 +18,7 @@ class CodonSpecification(Specification):
             return Location(
                 start=self.location.start + 3 * index,
                 end=self.location.start + 3 * (index + 1),
-                strand=1
+                strand=1,
             )
         else:
             return Location(
@@ -57,8 +58,6 @@ class CodonSpecification(Specification):
                         end=w_end - 3 * start_codon,
                         strand=self.location.strand,
                     )
-                return self.localized_on_window(
-                    new_location, start_codon, end_codon
-                )
+                return self.localized_on_window(new_location, start_codon, end_codon)
         else:
             return self

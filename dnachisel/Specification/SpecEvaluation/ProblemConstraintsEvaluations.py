@@ -20,10 +20,7 @@ class ProblemConstraintsEvaluations(SpecEvaluations):
         """
 
         def evaluate(constraint):
-            if (
-                autopass_constraints
-                and constraint.enforced_by_nucleotide_restrictions
-            ):
+            if autopass_constraints and constraint.enforced_by_nucleotide_restrictions:
                 return SpecEvaluation(
                     constraint,
                     problem,

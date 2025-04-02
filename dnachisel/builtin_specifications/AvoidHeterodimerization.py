@@ -30,9 +30,7 @@ class AvoidHeterodimerization(Specification):
       multi-objective optimization.
     """
 
-    def __init__(
-        self, other_primers_sequences, tmax=5, location=None, boost=1.0
-    ):
+    def __init__(self, other_primers_sequences, tmax=5, location=None, boost=1.0):
         self.other_primers_sequences = other_primers_sequences
         self.tmax = tmax
         self.location = location
@@ -59,7 +57,7 @@ class AvoidHeterodimerization(Specification):
                 problem=problem,
                 score=0,
                 locations=[self.location],
-                message="No existing primer"
+                message="No existing primer",
             )
         sequence = self.location.extract_sequence(problem.sequence)
         melting_temps = [

@@ -59,9 +59,7 @@ def group_nearby_indices(indices, max_gap=None, max_group_spread=None):
     current_group = [indices[0]]
     groups = [current_group]
     for ind in indices[1:]:
-        gap_small_enough = (max_gap is None) or (
-            ind - current_group[-1] < max_gap
-        )
+        gap_small_enough = (max_gap is None) or (ind - current_group[-1] < max_gap)
         spread_small_enough = (max_group_spread is None) or (
             ind - current_group[0] < max_group_spread
         )

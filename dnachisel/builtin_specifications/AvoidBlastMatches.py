@@ -92,14 +92,12 @@ class AvoidBlastMatches(Specification):
             ungapped=self.ungapped,
             e_value=self.e_value,
             culling_limit=self.culling_limit,
-            task="megablast"
+            task="megablast",
         )
 
         if isinstance(blast_record, list):
             alignments = [
-                alignment
-                for rec in blast_record
-                for alignment in rec.alignments
+                alignment for rec in blast_record for alignment in rec.alignments
             ]
         else:
             alignments = blast_record.alignments

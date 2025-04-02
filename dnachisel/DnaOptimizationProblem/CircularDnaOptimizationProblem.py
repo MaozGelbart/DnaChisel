@@ -1,6 +1,7 @@
 """Attempt at a special subclass of DnaOptimizationProblem for circular
 sequences. Needs more docs. See example in the examples folder.
 """
+
 from ..reports.optimization_reports import (
     write_optimization_report,
     write_no_solution_report,
@@ -54,9 +55,7 @@ class CircularDnaOptimizationProblem(DnaOptimizationProblem):
             if (loc.start, loc.end) == (0, L):
                 new_location = Location(0, 3 * L, strand=loc.strand)
                 new_specs.append(
-                    spec.copy_with_changes(
-                        location=new_location, derived_from=spec
-                    )
+                    spec.copy_with_changes(location=new_location, derived_from=spec)
                 )
             else:
                 new_location = loc + L
@@ -79,16 +78,20 @@ class CircularDnaOptimizationProblem(DnaOptimizationProblem):
 
         return CircularViewProblem(
             sequence=3 * self.sequence,
-            constraints=self._circularized_specs(
-                self.constraints, central_specs_only=central_specs_only
-            )
-            if with_constraints
-            else [],
-            objectives=self._circularized_specs(
-                self.objectives, central_specs_only=central_specs_only
-            )
-            if with_objectives
-            else [],
+            constraints=(
+                self._circularized_specs(
+                    self.constraints, central_specs_only=central_specs_only
+                )
+                if with_constraints
+                else []
+            ),
+            objectives=(
+                self._circularized_specs(
+                    self.objectives, central_specs_only=central_specs_only
+                )
+                if with_objectives
+                else []
+            ),
             logger=self.logger,
         )
 
@@ -118,10 +121,9 @@ class CircularDnaOptimizationProblem(DnaOptimizationProblem):
         )
         evals = circularized.constraints_evaluations(autopass=autopass)
         return self._recentered_evaluations(evals)
-    
+
     def all_constraints_pass(self, autopass=True):
-        """Return whether the current problem sequence passes all constraints.
-        """
+        """Return whether the current problem sequence passes all constraints."""
         evals = self.constraints_evaluations(autopass=autopass)
         return evals.all_evaluations_pass()
 
@@ -145,9 +147,7 @@ class CircularDnaOptimizationProblem(DnaOptimizationProblem):
             self.perform_final_constraints_check()
 
     def optimize(self):
-        problem = self._circularized_view(
-            with_constraints=True, with_objectives=True
-        )
+        problem = self._circularized_view(with_constraints=True, with_objectives=True)
         problem.optimize()
         L = len(self.sequence)
         self.sequence = problem.sequence[L : 2 * L]

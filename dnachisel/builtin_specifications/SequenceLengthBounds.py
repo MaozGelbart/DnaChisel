@@ -18,6 +18,7 @@ class SequenceLengthBounds(Specification):
     max_length
       Maximal allowed sequence length in nucleotides. None means no bound.
     """
+
     best_possible_score = 0
 
     def __init__(self, min_length=0, max_length=None, boost=1.0):
@@ -29,9 +30,9 @@ class SequenceLengthBounds(Specification):
         """Return 0 if the sequence length is between the bounds, else -1"""
         L, mini, maxi = len(problem.sequence), self.min_length, self.max_length
         if maxi is None:
-            score = (L >= mini)
+            score = L >= mini
         else:
-            score = (mini <= L <= maxi)
+            score = mini <= L <= maxi
         return SpecEvaluation(self, problem, score - 1)
 
     def __repr__(self):

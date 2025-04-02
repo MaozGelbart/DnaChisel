@@ -92,7 +92,7 @@ def blast_sequence(
     )
     if ungapped:
         command += ["-ungapped"]
-    
+
     process = subprocess.run(command, stderr=subprocess.PIPE, close_fds=True)
     if process.returncode:
         raise OSError("BLAST failed: %s" % process.stderr)

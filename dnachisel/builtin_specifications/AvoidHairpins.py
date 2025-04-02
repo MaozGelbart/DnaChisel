@@ -27,9 +27,7 @@ class AvoidHairpins(Specification):
 
     best_possible_score = 0
 
-    def __init__(
-        self, stem_size=20, hairpin_window=200, location=None, boost=1.0
-    ):
+    def __init__(self, stem_size=20, hairpin_window=200, location=None, boost=1.0):
         """Initialize."""
         self.stem_size = stem_size
         self.hairpin_window = hairpin_window
@@ -82,7 +80,7 @@ class AvoidHairpins(Specification):
         stem = self.stem_size
         inside = self.hairpin_window - 2 * self.stem_size
         return "No %d-%d-%dbp hairpin" % (stem, inside, stem)
-    
+
     def breach_label(self):
         stem = self.stem_size
         inside = self.hairpin_window - 2 * self.stem_size

@@ -27,8 +27,7 @@ class ConstraintsSolverMixin:
         )
 
     def all_constraints_pass(self, autopass=True):
-        """Return whether the current problem sequence passes all constraints.
-        """
+        """Return whether the current problem sequence passes all constraints."""
         if len(self.constraints) == 0:
             return True
         return all(
@@ -167,8 +166,7 @@ class ConstraintsSolverMixin:
         )
 
     def resolve_constraints_locally(self):
-        """Perform a local search, either stochastic or exhaustive.
-        """
+        """Perform a local search, either stochastic or exhaustive."""
         if self.mutation_space.space_size < self.randomization_threshold:
             self.resolve_constraints_by_exhaustive_search()
         else:
@@ -264,8 +262,7 @@ class ConstraintsSolverMixin:
                 localized_constraints = [
                     cst.localized(new_location, problem=self)
                     for cst in self.constraints
-                    if cst != constraint
-                    and not cst.enforced_by_nucleotide_restrictions
+                    if cst != constraint and not cst.enforced_by_nucleotide_restrictions
                 ]
                 passing_localized_constraints = [
                     cst
@@ -279,13 +276,9 @@ class ConstraintsSolverMixin:
                     ),
                     mutation_space=mutation_space,
                 )
-                local_problem.randomization_threshold = (
-                    self.randomization_threshold
-                )
+                local_problem.randomization_threshold = self.randomization_threshold
                 local_problem.max_random_iters = self.max_random_iters
-                local_problem.mutations_per_iteration = (
-                    self.mutations_per_iteration
-                )
+                local_problem.mutations_per_iteration = self.mutations_per_iteration
 
                 # STORE THE LOCAL PROBLEM IN THE LOGGER.
                 # This is useful for troubleshooting.
@@ -371,8 +364,6 @@ class ConstraintsSolverMixin:
                     " likely due to a complex problem. Try running the"
                     " solver on the same sequence again, or report the"
                     " error to the maintainers:\n\n"
-                    + self.constraints_text_summary(
-                        failed_only=True, autopass=False
-                    ),
+                    + self.constraints_text_summary(failed_only=True, autopass=False),
                     problem=self,
                 )

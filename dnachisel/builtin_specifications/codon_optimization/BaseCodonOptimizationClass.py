@@ -10,15 +10,11 @@ class BaseCodonOptimizationClass(CodonSpecification):
     best_possible_score = 0  # Don't forget to change in subclasses if needed
     localization_group_spread = 3
 
-    def __init__(
-        self, species=None, location=None, codon_usage_table=None, boost=1.0
-    ):
+    def __init__(self, species=None, location=None, codon_usage_table=None, boost=1.0):
         self.boost = boost
         self.location = Location.from_data(location)
         self.species = species
-        self.codon_usage_table = self.get_codons_table(
-            species, codon_usage_table
-        )
+        self.codon_usage_table = self.get_codons_table(species, codon_usage_table)
 
     def get_codons(self, problem):
         subsequence = self.location.extract_sequence(problem.sequence)
@@ -28,8 +24,7 @@ class BaseCodonOptimizationClass(CodonSpecification):
                 % (self.label())
             )
         return [
-            subsequence[3 * i : 3 * (i + 1)]
-            for i in range(int(len(subsequence) / 3))
+            subsequence[3 * i : 3 * (i + 1)] for i in range(int(len(subsequence) / 3))
         ]
 
     @staticmethod

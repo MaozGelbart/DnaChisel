@@ -228,8 +228,7 @@ class EnforceChanges(Specification):
         return SpecEvaluation(self, problem, score=score, locations=locations)
 
     def localized(self, location, problem=None, with_righthand=True):
-        """Localize the spec to the overlap of its location and the new.
-        """
+        """Localize the spec to the overlap of its location and the new."""
 
         # If minimum_percent=100: everything is covered by mutation restriction
         # If minimum_percent<100: no smart strategy return self.

@@ -3,6 +3,7 @@
 from .TerminalSpecification import TerminalSpecification
 from ..biotools import gc_content
 
+
 class EnforceTerminalGCContent(TerminalSpecification):
     """Enforce bounds for the GC content at the sequence's terminal ends.
 
@@ -34,5 +35,8 @@ class EnforceTerminalGCContent(TerminalSpecification):
         return -(max(0, self.mini - gc) + max(0, gc - self.maxi))
 
     def __repr__(self):
-        return "Terminal(%.02f < gc < %.02f, window: %d)" % \
-            (self.mini, self.maxi, self.window_size)
+        return "Terminal(%.02f < gc < %.02f, window: %d)" % (
+            self.mini,
+            self.maxi,
+            self.window_size,
+        )

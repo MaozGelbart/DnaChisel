@@ -1,4 +1,3 @@
-
 import itertools
 from ..biotools import (
     reverse_complement,
@@ -6,6 +5,7 @@ from ..biotools import (
     IUPAC_NOTATION,
 )
 from .SequencePattern import SequencePattern
+
 
 class DnaNotationPattern(SequencePattern):
     """Class for patterns in plain DNA notation: ATTGCCA, GCNNKTA, etc.
@@ -42,16 +42,12 @@ class DnaNotationPattern(SequencePattern):
         ]
 
     def __repr__(self):
-        """Represent the pattern as PatternType(name) """
-        return self.sequence + (
-            "" if self.name is None else " (%s)" % self.name
-        )
+        """Represent the pattern as PatternType(name)"""
+        return self.sequence + ("" if self.name is None else " (%s)" % self.name)
 
     def __str__(self):
-        """Represent the pattern as PatternType(name) """
-        return self.sequence + (
-            "" if self.name is None else " (%s)" % self.name
-        )
+        """Represent the pattern as PatternType(name)"""
+        return self.sequence + ("" if self.name is None else " (%s)" % self.name)
 
     @staticmethod
     def from_string(string):

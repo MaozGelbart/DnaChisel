@@ -145,13 +145,9 @@ class DnaOptimizationProblem(
         #  SpecificationSets, and unpack these to complete the lists of
         # objectives and constraints.
         for specs in (self.constraints, self.objectives):
-            specsets = [
-                spec for spec in specs if isinstance(spec, SpecificationSet)
-            ]
+            specsets = [spec for spec in specs if isinstance(spec, SpecificationSet)]
             specs_in_sets = [
-                spec
-                for specset in specsets
-                for spec in specset.specifications.values()
+                spec for specset in specsets for spec in specset.specifications.values()
             ]
             for specset in specsets:
                 specs.remove(specset)
@@ -181,9 +177,7 @@ class DnaOptimizationProblem(
             # If the original sequence is outside of the allowed mutations
             # space, replace the sequence by a sequence which complies with
             # the mutation space.
-            self.sequence = self.mutation_space.constrain_sequence(
-                self.sequence
-            )
+            self.sequence = self.mutation_space.constrain_sequence(self.sequence)
 
     def _replace_sequence(self, new_sequence):
         """Replace the current sequence of the problem.

@@ -48,22 +48,22 @@ class MutationChoice:
     def merge_with(self, others):
         """Merge this mutation choice with others to form a single choice
 
-        Examples:
-        ---------
+         Examples:
+         ---------
 
-        >>> ((2, 5), {'ATT', 'ATA'})
+         >>> ((2, 5), {'ATT', 'ATA'})
 
-       merged with:
+        merged with:
 
-        >>> [
-        >>>     ((0, 3), {'GTA', 'GCT', 'GTT'}),
-        >>>     ((3, 4), {'A', 'T', 'G', 'C'}),
-        >>>     ((4, 7), {'ATG', 'ACC', 'CTG'})
-        >>> ]
+         >>> [
+         >>>     ((0, 3), {'GTA', 'GCT', 'GTT'}),
+         >>>     ((3, 4), {'A', 'T', 'G', 'C'}),
+         >>>     ((4, 7), {'ATG', 'ACC', 'CTG'})
+         >>> ]
 
-        returns the only choices on the full interval which are compatible with
-        at least one choice in each of the MutationChoices
-        >>> (0, 7), {'GTATACC', 'GTATATG'}
+         returns the only choices on the full interval which are compatible with
+         at least one choice in each of the MutationChoices
+         >>> (0, 7), {'GTATACC', 'GTATATG'}
 
         """
         others = sorted(others, key=lambda o: o.start)
@@ -77,17 +77,13 @@ class MutationChoice:
                 slot = []
                 for variant in other.variants:
                     subseq = variant[istart - other.start : iend - other.start]
-                    subcandidate = candidate[
-                        istart - self.start : iend - self.start
-                    ]
+                    subcandidate = candidate[istart - self.start : iend - self.start]
                     if subseq == subcandidate:
                         slot.append(variant)
                 slots.append(slot)
             for subseqs in itertools.product(*slots):
                 seq = "".join(subseqs)
-                matching_seq = seq[
-                    self.start - others_start : self.end - others_start
-                ]
+                matching_seq = seq[self.start - others_start : self.end - others_start]
                 if matching_seq == candidate:
                     final_variants.add(seq)
         return MutationChoice(segment=final_segment, variants=final_variants)

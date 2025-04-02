@@ -16,7 +16,7 @@ class AvoidMatches(Specification):
     This specification can be used to ensure that a sequence has no matches
     with a given organism, or a set of sequences, which can be useful to
     create orthogonal sequences or primer-friendly regions.
-    
+
     This specification uses Bowtie in the background and requires Bowtie
     installed on your machine (it can be as simple as ``apt install bowtie``
     on Ubuntu).
@@ -125,14 +125,12 @@ class AvoidMatches(Specification):
         new_location = self.location.overlap_region(location)
         if new_location is None:
             return None
-        new_location = location.extended(
-            self.match_length - 1, right=with_righthand
-        )
+        new_location = location.extended(self.match_length - 1, right=with_righthand)
         return self.copy_with_changes(location=new_location, is_localized=True)
 
     def feature_label_parameters(self):
         return [self.bowtie_index]
-    
+
     def remove_temp_directory(self):
         if self._tmp_data_dir is not None:
             shutil.rmtree(self._tmp_data_dir)

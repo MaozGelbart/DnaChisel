@@ -13,10 +13,10 @@ SequencePattern.registered_string_pattern_classes = [
 ]
 
 __all__ = [
-    'SequencePattern',
-    'DnaNotationPattern',
-    'EnzymeSitePattern',
-    'HomopolymerPattern',
-    'RepeatedKmerPattern',
-    'MotifPssmPattern'
+    "SequencePattern",
+    "DnaNotationPattern",
+    "EnzymeSitePattern",
+    "HomopolymerPattern",
+    "RepeatedKmerPattern",
+    "MotifPssmPattern",
 ]

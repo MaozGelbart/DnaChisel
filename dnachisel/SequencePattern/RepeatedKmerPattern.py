@@ -1,6 +1,7 @@
 import re
 from .SequencePattern import SequencePattern
 
+
 class RepeatedKmerPattern(SequencePattern):
     """Direct repeats like ATT-ATT, ATGC-ATGC-ATGC, etc.
 

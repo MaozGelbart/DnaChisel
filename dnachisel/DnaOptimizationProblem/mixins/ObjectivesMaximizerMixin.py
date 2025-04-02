@@ -24,20 +24,16 @@ class ObjectivesMaximizerMixin:
         return self.objectives_evaluations().to_text()
 
     def optimize_by_exhaustive_search(self):
-        """
-        """
+        """ """
         if not self.all_constraints_pass():
             summary = self.constraints_text_summary(failed_only=True)
             raise NoSolutionError(
-                summary
-                + "Optimization can only be done when all constraints are "
+                summary + "Optimization can only be done when all constraints are "
                 "verified.",
                 self,
             )
 
-        if all(
-            [obj.best_possible_score is not None for obj in self.objectives]
-        ):
+        if all([obj.best_possible_score is not None for obj in self.objectives]):
             best_possible_score = sum(
                 [obj.best_possible_score for obj in self.objectives]
             )
@@ -64,8 +60,7 @@ class ObjectivesMaximizerMixin:
         self.sequence = current_best_sequence
 
     def optimize_by_random_mutations(self):
-        """
-        """
+        """ """
         if not self.all_constraints_pass():
             summary = self.constraints_text_summary()
             raise ValueError(
@@ -74,23 +69,16 @@ class ObjectivesMaximizerMixin:
             )
         score = self.objective_scores_sum()
 
-        if all(
-            [obj.best_possible_score is not None for obj in self.objectives]
-        ):
+        if all([obj.best_possible_score is not None for obj in self.objectives]):
             best_possible_score = sum(
-                [
-                    obj.best_possible_score * obj.boost
-                    for obj in self.objectives
-                ]
+                [obj.best_possible_score * obj.boost for obj in self.objectives]
             )
         else:
             best_possible_score = None
         iters = self.max_random_iters
         stagnating_iterations = 0
         for iteration in self.logger.iter_bar(mutation=range(iters)):
-            if (best_possible_score is not None) and (
-                score >= best_possible_score
-            ):
+            if (best_possible_score is not None) and (score >= best_possible_score):
                 self.logger(mutation__index=iters)
                 break
             if (self.optimization_stagnation_tolerance is not None) and (
@@ -150,8 +138,7 @@ class ObjectivesMaximizerMixin:
             # location.
             location = Location(*mutation_space.choices_span)
             localized_constraints = [
-                cst.localized(location, problem=self)
-                for cst in self.constraints
+                cst.localized(location, problem=self) for cst in self.constraints
             ]
             localized_constraints = [
                 cst for cst in localized_constraints if cst is not None
@@ -173,16 +160,12 @@ class ObjectivesMaximizerMixin:
             self.logger.store(
                 problem=self, local_problem=local_problem, location=location
             )
-            local_problem.randomization_threshold = (
-                self.randomization_threshold
-            )
+            local_problem.randomization_threshold = self.randomization_threshold
             local_problem.max_random_iters = self.max_random_iters
             local_problem.optimization_stagnation_tolerance = (
                 self.optimization_stagnation_tolerance
             )
-            local_problem.mutations_per_iteration = (
-                self.mutations_per_iteration
-            )
+            local_problem.mutations_per_iteration = self.mutations_per_iteration
 
             # OPTIMIZE THE LOCAL PROBLEM
 

@@ -8,7 +8,6 @@ from ..biotools import reverse_complement
 from ..Specification import Specification, SpecEvaluation
 
 
-
 class EnforceChoice(Specification):
     """The sequence at the given location must be one of several alternatives.
 
@@ -36,13 +35,10 @@ class EnforceChoice(Specification):
         if isinstance(choices, str) and "|" in choices:
             choices = choices.split("|")
         choices = [
-            SequencePattern.from_string(c) if isinstance(c, str) else c
-            for c in choices
+            SequencePattern.from_string(c) if isinstance(c, str) else c for c in choices
         ]
         # PRECOMPUTE ALL VARIANTS
-        choices = [
-            variant for choice in choices for variant in choice.all_variants()
-        ]
+        choices = [variant for choice in choices for variant in choice.all_variants()]
         self.choices = choices
         self.location = Location.from_data(location)
         self.boost = boost
@@ -88,4 +84,3 @@ class EnforceChoice(Specification):
     def __str__(self):
         """Represent."""
         return "EnforceChoice(%s)" % str(self.location)
-

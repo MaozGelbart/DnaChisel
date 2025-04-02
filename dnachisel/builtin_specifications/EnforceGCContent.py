@@ -8,7 +8,6 @@ from ..Location import Location
 from ..Specification import Specification, SpecEvaluation
 
 
-
 class EnforceGCContent(Specification):
     """Specification on the local or global proportion of G/C nucleotides.
 
@@ -101,9 +100,7 @@ class EnforceGCContent(Specification):
         sequence = self.location.extract_sequence(problem.sequence)
         gc = gc_content(sequence, window_size=self.window)
         breaches = np.atleast_1d(
-            np.maximum(0, self.mini - gc) + np.maximum(
-                0, gc - self.maxi
-            )
+            np.maximum(0, self.mini - gc) + np.maximum(0, gc - self.maxi)
         )
         score = -breaches.sum()
         breaches_starts = wstart + (breaches > 0).nonzero()[0]
@@ -121,9 +118,7 @@ class EnforceGCContent(Specification):
             groups = group_nearby_segments(
                 segments, max_start_spread=max(1, self.locations_span)
             )
-            breaches_locations = [
-                (group[0][0], group[-1][-1]) for group in groups
-            ]
+            breaches_locations = [(group[0][0], group[-1][-1]) for group in groups]
 
         if breaches_locations == []:
             message = "Passed !"
@@ -156,9 +151,7 @@ class EnforceGCContent(Specification):
             return None
         else:
             extension = 0 if self.window is None else self.window - 1
-            extended_location = location.extended(
-                extension, right=with_righthand
-            )
+            extended_location = location.extended(extension, right=with_righthand)
             new_location = self.location.overlap_region(extended_location)
         return self.copy_with_changes(location=new_location)
 
@@ -171,10 +164,8 @@ class EnforceGCContent(Specification):
         return (
             show_mini * [("mini", "%.2f" % self.mini)]
             + show_maxi * [("maxi", "%.2f" % self.maxi)]
-            + show_target
-            * [("target", ("%.2f" % self.target) if self.target else "")]
-            + show_window
-            * [("window", ("%d" % self.window) if self.window else "")]
+            + show_target * [("target", ("%.2f" % self.target) if self.target else "")]
+            + show_window * [("window", ("%d" % self.window) if self.window else "")]
         )
 
     def short_label(self):
@@ -188,7 +179,7 @@ class EnforceGCContent(Specification):
         if self.window is not None:
             result += "/%dbp" % self.window
         return result
-    
+
     def breach_label(self):
         if self.target is not None:
             result = "GC != %d%% " % (np.round(100 * self.target))

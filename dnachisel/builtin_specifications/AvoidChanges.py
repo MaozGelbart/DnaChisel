@@ -16,7 +16,7 @@ class AvoidChanges(Specification):
     """Specify that some locations of the sequence should not be changed.
 
     Shorthand for annotations: "change".
-    
+
     Parameters
     ----------
     location
@@ -49,7 +49,6 @@ class AvoidChanges(Specification):
         target_sequence=None,
         boost=1.0,
     ):
-
         """Initialize."""
         if location is None and (indices is not None):
             location = (min(indices), max(indices) + 1)
@@ -103,9 +102,7 @@ class AvoidChanges(Specification):
         """
         target = self.target_sequence
         sequence = self.extract_subsequence(problem.sequence)
-        differing_indices = np.nonzero(
-            sequences_differences_array(sequence, target)
-        )[0]
+        differing_indices = np.nonzero(sequences_differences_array(sequence, target))[0]
 
         if self.indices is not None:
             differing_indices = self.indices[differing_indices]
@@ -127,8 +124,7 @@ class AvoidChanges(Specification):
         return SpecEvaluation(self, problem, score=score, locations=locations)
 
     def localized(self, location, problem=None, with_righthand=False):
-        """Localize the spec to the overlap of its location and the new.
-        """
+        """Localize the spec to the overlap of its location and the new."""
 
         if self.max_edits != 0:
             return self
@@ -174,7 +170,6 @@ class AvoidChanges(Specification):
 
     def short_label(self):
         return "keep"
-    
+
     def breach_label(self):
         return "edits"
-

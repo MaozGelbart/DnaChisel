@@ -29,9 +29,11 @@ from .GraphicTranslator import GraphicTranslator
 try:
     import matplotlib.pyplot as plt
     from matplotlib.backends.backend_pdf import PdfPages
+
     MPL_AVAILABLE = True
 except ImportError:
     MPL_AVAILABLE = False
+
 
 def _sequences_to_new_records(sequences):
     """Turn acceptable sequences input into a records list.
@@ -49,9 +51,7 @@ def _sequences_to_new_records(sequences):
             records.append(deepcopy(seq))
         else:
             name, seq = seq
-            records.append(
-                sequence_to_biopython_record(seq, id=name, name=name)
-            )
+            records.append(sequence_to_biopython_record(seq, id=name, name=name))
     return records
 
 
@@ -63,16 +63,15 @@ def _parse_location(location_string):
     return int(start), int(end), -1 if strand == "(-)" else 1
 
 
-
 def records_from_breaches_dataframe(dataframe, sequences):
     """Generate records with annotations indicating constraints breaches.
-    
+
     Parameters
     ----------
 
     dataframe
       A breaches dataframe returned by ``constraints_breaches_dataframe``
-    
+
     sequences
       Either a list [("name", "sequence")...] or a dict {"name": "sequence"}
       or a list of biopython records whole id is the sequence name.
@@ -81,14 +80,10 @@ def records_from_breaches_dataframe(dataframe, sequences):
     records = _sequences_to_new_records(sequences)
     for record in records:
         record.features = [
-            f
-            for f in record.features
-            if not f.qualifiers.get("is_a_breach", False)
+            f for f in record.features if not f.qualifiers.get("is_a_breach", False)
         ]
     colors_cycle_iterator = colors_cycle()
-    columns_colors = {
-        c: next(colors_cycle_iterator) for c in dataframe.columns
-    }
+    columns_colors = {c: next(colors_cycle_iterator) for c in dataframe.columns}
     for rec, (i, row) in zip(records, dataframe.iterrows()):
         for column in dataframe.columns:
             locations = row[column]
@@ -122,17 +117,17 @@ def breaches_records_to_pdf(
     breaches_records, pdf_path=None, figure_width=10, logger="bar"
 ):
     """Plots figures of the breaches annotated in the records into a PDF file.
-    
+
     Parameters
     ----------
 
     breaches_records
       A least of records annotated with breaches, as returned by the
-    
+
     pdf_path
       Either the path to a PDF, or a file handle (open in wb mode) or None
       for this method to return binary PDF data.
-    
+
     logger
       Either "bar" for a progress bar, None for no logging, or any Proglog
       logger. The bar name is "sequence".

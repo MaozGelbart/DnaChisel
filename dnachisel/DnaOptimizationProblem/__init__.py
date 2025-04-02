@@ -5,5 +5,5 @@ from .CircularDnaOptimizationProblem import CircularDnaOptimizationProblem
 __all__ = [
     "NoSolutionError",
     "DnaOptimizationProblem",
-    "CircularDnaOptimizationProblem"
+    "CircularDnaOptimizationProblem",
 ]

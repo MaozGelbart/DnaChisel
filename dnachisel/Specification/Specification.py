@@ -5,6 +5,7 @@ Notable features implemented here:
 - Many empty methods that features subclass will overwrite
 - Feature import/export from/to Genbank features.
 """
+
 import copy
 from ..Location import Location
 from .FeatureRepresentationMixin import FeatureRepresentationMixin
@@ -123,7 +124,7 @@ class Specification(FeatureRepresentationMixin):
         with_location=True,
         assignment_symbol=":",
         use_short_form=False,
-        use_breach_form=False
+        use_breach_form=False,
     ):
         """Return a string label for this specification.
 
@@ -167,9 +168,11 @@ class Specification(FeatureRepresentationMixin):
         else:
             params = "(%s)" % ", ".join(
                 [
-                    assignment_symbol.join(map(str, p))
-                    if isinstance(p, tuple)
-                    else str(p)
+                    (
+                        assignment_symbol.join(map(str, p))
+                        if isinstance(p, tuple)
+                        else str(p)
+                    )
                     for p in params
                 ]
             )
@@ -183,7 +186,7 @@ class Specification(FeatureRepresentationMixin):
         to be represented as '40-60% GC' in reports tables etc..
         """
         return self.__class__.__name__
-    
+
     def breach_label(self):
         """Shorter, less precise label to be used in tables, reports, etc.
 

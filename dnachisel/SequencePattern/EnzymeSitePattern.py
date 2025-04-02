@@ -2,6 +2,7 @@ import re
 from Bio.Restriction.Restriction_Dictionary import rest_dict
 from .DnaNotationPattern import DnaNotationPattern
 
+
 class EnzymeSitePattern(DnaNotationPattern):
     """Class to represent Enzyme site patterns
 

@@ -44,9 +44,7 @@ class SpecEvaluations:
 
         Scores are multiplied by their respective boost factor.
         """
-        result = sum(
-            [ev.specification.boost * ev.score for ev in self.evaluations]
-        )
+        result = sum([ev.specification.boost * ev.score for ev in self.evaluations])
         if as_text:
             result = score_to_formatted_string(result)
         return result
@@ -82,10 +80,7 @@ class SpecEvaluations:
         return (
             "\n".join(
                 ["===> %s" % self.text_summary_message()]
-                + [
-                    e.to_text(role=self.specifications_role)
-                    for e in self.evaluations
-                ]
+                + [e.to_text(role=self.specifications_role) for e in self.evaluations]
             )
             + "\n\n"
         )

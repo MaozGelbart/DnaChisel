@@ -43,9 +43,11 @@ class AvoidStopCodons(CodonSpecification):
             problem,
             score=-len(errors_locations),
             locations=errors_locations,
-            message="All OK."
-            if len(errors_locations) == 0
-            else "Stop codons found at indices %s" % errors_locations,
+            message=(
+                "All OK."
+                if len(errors_locations) == 0
+                else "Stop codons found at indices %s" % errors_locations
+            ),
         )
 
     def __str__(self):

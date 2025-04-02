@@ -2,40 +2,40 @@ import subprocess
 import tempfile
 import os
 
+
 def run_process(name, parameters):
-    process = subprocess.run(
-        parameters,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE
-    )
+    process = subprocess.run(parameters, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     if process.returncode:
         error = process.stderr.decode()
         raise OSError("%s failed:\n\n%s" % (name, error))
     return process.stdout
 
+
 def create_bowtie_index_from_sequences(sequences, path):
-    fasta_path = os.path.join(path, 'sequences.fa')
-    bowtie_path = os.path.join(path, 'bowtie')
-    with open(fasta_path, 'w') as f:
-        f.write("\n".join([
-            ">%d\n%s" % (i, sequence)
-            for i, sequence in enumerate(sequences)
-        ]))
-    run_process("build-bowtie", [
-        "bowtie-build", "-f", fasta_path, bowtie_path, "--quiet"
-    ])
+    fasta_path = os.path.join(path, "sequences.fa")
+    bowtie_path = os.path.join(path, "bowtie")
+    with open(fasta_path, "w") as f:
+        f.write(
+            "\n".join(
+                [">%d\n%s" % (i, sequence) for i, sequence in enumerate(sequences)]
+            )
+        )
+    run_process(
+        "build-bowtie", ["bowtie-build", "-f", fasta_path, bowtie_path, "--quiet"]
+    )
     return bowtie_path
+
 
 def find_all_bowtie_matches(
     sequence, bowtie_index_path, match_length, max_mismatches=0
 ):
     """Return (short) matches between a sequence and a Bowtie index.
-    
+
     The result is of the form [(start, end), n_mismatches)] where (start, end)
     indicates the position of the match in the sequence, and n_mismatches is
     the number of mismatches with the closest homology in the index.
-    
-    
+
+
     """
 
     # CREATE THE PARAMETERS

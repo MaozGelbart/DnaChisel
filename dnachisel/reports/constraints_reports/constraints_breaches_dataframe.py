@@ -8,12 +8,14 @@ except ImportError:
 from ...DnaOptimizationProblem import DnaOptimizationProblem
 from ...Location import Location
 
+
 def _breaches(constraint, sequence):
     problem = DnaOptimizationProblem(sequence, mutation_space={})
     new_constraint = constraint.initialized_on_problem(problem, role=None)
     evaluation = new_constraint.evaluate(problem)
     locations = Location.merge_overlapping_locations(evaluation.locations)
     return ", ".join(map(str, locations))
+
 
 def _install_extras_message(libname):
     return (
@@ -24,8 +26,11 @@ def _install_extras_message(libname):
         % (libname, libname.lower().replace(" ", "_"))
     )
 
+
 def constraints_breaches_dataframe(
-    constraints, sequences, display_constraints_locations=False,
+    constraints,
+    sequences,
+    display_constraints_locations=False,
 ):
     """Return a dataframe summarizing constraints breaches in the sequences.
 
@@ -35,7 +40,7 @@ def constraints_breaches_dataframe(
       /    Cst1       Cst2
     =====  ========  ======================
     Seq1   10-50(+)  100-200(+), 300-350(+)
-    seq2   
+    seq2
     Seq3   2-10(+)
     Seq4             500-1000(-)
     =====  ========  ======================

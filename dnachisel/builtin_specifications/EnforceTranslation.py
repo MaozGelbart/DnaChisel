@@ -1,6 +1,5 @@
 "Implement EnforceTranslation."
 
-
 from ..Specification import SpecEvaluation
 from ..biotools import (
     translate,

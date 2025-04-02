@@ -6,11 +6,7 @@ from .DnaOptimizationProblem import (
 
 from .Location import Location
 
-from .Specification import (
-    Specification,
-    SpecificationSet,
-    SpecEvaluation
-)
+from .Specification import Specification, SpecificationSet, SpecEvaluation
 
 from .builtin_specifications import (
     AllowPrimer,
@@ -46,7 +42,7 @@ from .SequencePattern import (
     HomopolymerPattern,
     RepeatedKmerPattern,
     EnzymeSitePattern,
-    MotifPssmPattern
+    MotifPssmPattern,
 )
 
 from .biotools import (

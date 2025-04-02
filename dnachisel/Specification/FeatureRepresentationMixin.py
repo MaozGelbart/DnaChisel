@@ -73,9 +73,9 @@ class FeatureRepresentationMixin:
                     return value
 
     @classmethod
-    def from_label(cls, label, location, specifications_dict='default'):
+    def from_label(cls, label, location, specifications_dict="default"):
         location = Location.from_data(location)
-        if specifications_dict == 'default':
+        if specifications_dict == "default":
             specifications_dict = cls.DEFAULT_SPECIFICATIONS_DICT
         label = label.strip()
         if not label.endswith(")"):
@@ -125,16 +125,15 @@ class FeatureRepresentationMixin:
             faulty_parameter = message.split("'")[1]
             raise TypeError(
                 "Unknown parameter %s for specification %s "
-                "at location %s"
-                % (faulty_parameter, specification, kwargs["location"])
+                "at location %s" % (faulty_parameter, specification, kwargs["location"])
             )
 
         return role, specification_instance
 
     @classmethod
-    def list_from_label(cls, label, location, specifications_dict='default'):
+    def list_from_label(cls, label, location, specifications_dict="default"):
         """Return a list of all specs defined in the string label.
-        
+
         The labels are normal spec labels, like @no(BsmBI_site), separated
         by the "&" symbol.
         """
@@ -148,9 +147,7 @@ class FeatureRepresentationMixin:
         ]
 
     @classmethod
-    def list_from_biopython_feature(
-        cls, feature, specifications_dict="default"
-    ):
+    def list_from_biopython_feature(cls, feature, specifications_dict="default"):
         """Parse a Biopython feature to create an annotation.
 
         The specifications_dict enables to map specification names to the

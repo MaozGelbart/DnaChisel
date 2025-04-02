@@ -159,7 +159,7 @@ class MutationSpace:
         ]
         for variants in itertools.product(*variants_slots):
             new_sequence[choice_start:choice_end] = encoded_segment
-            for ((start, end), variant) in variants:
+            for (start, end), variant in variants:
                 new_sequence[start:end] = variant
             yield new_sequence.decode()
 
@@ -240,7 +240,10 @@ class MutationSpace:
                 _x = x - 0.5 + sign * delta
                 _y = y_offset + 0.5
                 ax.plot(
-                    [_x, _x], [_y, _y - N], linewidth=0.5, color=color,
+                    [_x, _x],
+                    [_y, _y - N],
+                    linewidth=0.5,
+                    color=color,
                 )
             for y, variant in enumerate(choice.variants):
                 for x, nucleotide in enumerate(variant):

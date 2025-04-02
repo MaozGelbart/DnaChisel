@@ -84,7 +84,7 @@ class RecordRepresentationMixin:
         with_sequence_edits=False,
         colors_dict=None,
         use_short_labels=True,
-        record_id = None
+        record_id=None,
     ):
         """Return/write record representing the final sequence and problem.
 
@@ -194,9 +194,7 @@ class RecordRepresentationMixin:
     def sequence_edits_as_features(self, feature_type="misc_feature"):
         """Return a list of Biopython Record Features indicating each of the
         edits."""
-        segments = sequences_differences_segments(
-            self.sequence, self.sequence_before
-        )
+        segments = sequences_differences_segments(self.sequence, self.sequence_before)
         return [
             Location(start, end).to_biopython_feature(
                 label="%s=>%s"

@@ -1,4 +1,5 @@
 """Text and number formatting operations"""
+
 from copy import deepcopy
 import json
 
@@ -6,7 +7,7 @@ import numpy as np
 
 
 def round_all_numbers_in_dict(d, rounding_digits=2, outplace=True):
-    """ Return a new version of dict d with all floats rounded to N digits."""
+    """Return a new version of dict d with all floats rounded to N digits."""
     if outplace:
         d = deepcopy(d)
     for k, v in d.items():
@@ -24,6 +25,7 @@ def dict_to_pretty_string(d, rounding_digits=2, indent=2):
     for char in '{}",':
         formatted_text = formatted_text.replace(char, "")
     return formatted_text
+
 
 def score_to_formatted_string(score, characters=9):
     """Transform a number (score) into a best-format string.

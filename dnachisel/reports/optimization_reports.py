@@ -162,7 +162,9 @@ def write_no_solution_report(target, problem, error, file_content=None, file_pat
             label_prefix="BREACH", locations_filter=is_in_focus
         )
         SeqIO.write(
-            record, root._file("local_constraints_breaches.gb").open("w"), "genbank",
+            record,
+            root._file("local_constraints_breaches.gb").open("w"),
+            "genbank",
         )
 
         # CREATE A FIGURE OF THE LOCAL CONSTRAINTS BREACHES AS A NEW PDF PAGE
@@ -314,7 +316,7 @@ def write_optimization_report(
     objectives_evaluations
       Precomputed objectives evaluations. If None provided, they will be
       computed again from the problem.
-    
+
 
     figure_width
       Width of the report's figure, in inches. The more annotations there will
@@ -324,11 +326,11 @@ def write_optimization_report(
     max_features_in_plots
       Limit to the number of features to plot (plots with thousands of features
       may take ages to plot)
-    
+
     file_path
       Path to the file from which the problem was created
-    
-    
+
+
 
     """
     if not PDF_REPORTS_AVAILABLE:
@@ -419,4 +421,3 @@ def write_optimization_report(
 
     if isinstance(target, str):
         return root._close()
-
