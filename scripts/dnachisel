@@ -34,7 +34,8 @@ import os
 from docopt import docopt
 from dnachisel import DnaOptimizationProblem, CircularDnaOptimizationProblem
 
-if __name__ == "__main__":
+
+def main():
     params = docopt(__doc__)
     source, target = params["<source>"], params["<target>"]
 
@@ -83,3 +84,7 @@ if __name__ == "__main__":
         "\n\n",
         "Result written to %s" % target,
     )
+
+
+if __name__ == "__main__":
+    main()
