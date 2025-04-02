@@ -4,6 +4,7 @@ In this example we create a 1000bp random sequence, then edit out every match
 with E. coli that is 14bp or longer.
 
 """
+
 import os
 from _utils import download_ecoli_genome_if_not_already_there
 

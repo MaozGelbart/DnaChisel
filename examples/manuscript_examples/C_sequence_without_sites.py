@@ -4,9 +4,7 @@ from Bio.Restriction import AllEnzymes
 # CREATE AN AvoidPattern CONSTRAINT FOR EACH ENZYME SITE OF LENGTH 6
 
 sites_constraints = [
-    AvoidPattern("%s_site" % enzyme)
-    for enzyme in AllEnzymes
-    if enzyme.size == 6
+    AvoidPattern("%s_site" % enzyme) for enzyme in AllEnzymes if enzyme.size == 6
 ]
 
 # CREATE AN RESOLVE THE PROBLEM:
@@ -18,4 +16,4 @@ problem = DnaOptimizationProblem(
 
 problem.resolve_constraints()
 
-print ("Final sequence:", problem.sequence)
+print("Final sequence:", problem.sequence)

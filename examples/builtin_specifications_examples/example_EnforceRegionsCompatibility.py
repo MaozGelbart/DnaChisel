@@ -1,6 +1,10 @@
-from dnachisel import (DnaOptimizationProblem, EnforceRegionsCompatibility,
-                       EnforceGCContent, random_dna_sequence,
-                       sequences_differences)
+from dnachisel import (
+    DnaOptimizationProblem,
+    EnforceRegionsCompatibility,
+    EnforceGCContent,
+    random_dna_sequence,
+    sequences_differences,
+)
 import numpy
 
 # We setup the randomizer to always get the same sequence
@@ -20,18 +24,18 @@ problem = DnaOptimizationProblem(
         EnforceRegionsCompatibility(
             locations=[(0, 4), (50, 54), (100, 104), (150, 154)],
             compatibility_condition=compatibility_condition,
-            condition_label='2bp difference'
+            condition_label="2bp difference",
         ),
-        EnforceGCContent(mini=0.4, maxi=0.6, window=40)
-    ]
+        EnforceGCContent(mini=0.4, maxi=0.6, window=40),
+    ],
 )
 
-print ("\n\n=== Status before optimization ===")
+print("\n\n=== Status before optimization ===")
 print(problem.constraints_text_summary())
 
-print ("Now solving constraints...")
+print("Now solving constraints...")
 problem.resolve_constraints()
-print ("Done.")
+print("Done.")
 
-print ("\n\n=== Status after optimization ===\n")
-print (problem.constraints_text_summary())
+print("\n\n=== Status after optimization ===\n")
+print(problem.constraints_text_summary())

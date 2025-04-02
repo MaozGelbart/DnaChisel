@@ -3,6 +3,7 @@
 In this example, the Genbank record data/example_sequence.gbk
 gets optimized and a report is created at reports/optimization_with_report/
 """
+
 import os
 from dnachisel import DnaOptimizationProblem
 

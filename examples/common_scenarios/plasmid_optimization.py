@@ -67,7 +67,7 @@ dna_provider_constraints = [
 ]
 
 CDS_constraints = []
-for (start, end, strand) in CDS_list:
+for start, end, strand in CDS_list:
     if strand == 1:
         promoter_region = (start - 30, start - 1)
     else:

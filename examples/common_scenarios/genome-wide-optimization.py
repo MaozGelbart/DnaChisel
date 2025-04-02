@@ -22,7 +22,7 @@ for feature in tqdm.tqdm(genome_record.features):
                 AvoidPattern("BsmBI_site"),
             ],
             objectives=[CodonOptimize(species="e_coli")],
-            logger=None
+            logger=None,
         )
         problem.resolve_constraints()
         problem.optimize()

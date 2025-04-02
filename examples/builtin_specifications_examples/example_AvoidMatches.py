@@ -4,6 +4,7 @@ In this example we create a 1000bp random sequence, then edit out every match
 with E. coli that is 14bp or longer.
 
 """
+
 from dnachisel import DnaOptimizationProblem, random_dna_sequence, AvoidMatches
 from genome_collector import GenomeCollection
 
@@ -16,9 +17,7 @@ ecoli_index = collection.get_taxid_bowtie_index_path(511145, version="1")
 
 problem = DnaOptimizationProblem(
     sequence=random_dna_sequence(500, seed=123),
-    constraints=[
-        AvoidMatches(bowtie_index=ecoli_index, match_length=15, mismatches=1)
-    ],
+    constraints=[AvoidMatches(bowtie_index=ecoli_index, match_length=15, mismatches=1)],
 )
 
 print(

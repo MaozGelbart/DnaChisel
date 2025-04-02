@@ -59,4 +59,3 @@ print("Max Tm heterodimerization between any 2 primers: %.2f" % max_tm)
 
 gc_contents = [gc_content(p) for p in existing_primers]
 print("GC content range %.2f-%.2f" % (min(gc_contents), max(gc_contents)))
-

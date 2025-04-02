@@ -16,9 +16,15 @@ to minimize this score, and we use it to optimize a coding sequence.
 """
 
 from collections import Counter
-from dnachisel import (EnforceTranslation, Specification, SpecEvaluation,
-                       reverse_translate, random_protein_sequence, Location,
-                       DnaOptimizationProblem)
+from dnachisel import (
+    EnforceTranslation,
+    Specification,
+    SpecEvaluation,
+    reverse_translate,
+    random_protein_sequence,
+    Location,
+    DnaOptimizationProblem,
+)
 
 
 class MinimizeNinemersScore(Specification):
@@ -27,20 +33,18 @@ class MinimizeNinemersScore(Specification):
     def evaluate(self, problem):
         """Return Gen9's ninemer score for the problem' sequence"""
         sequence = problem.sequence
-        all_9mers = [sequence[i:i + 9] for i in range(len(sequence) - 9)]
-        number_of_non_unique_9mers = sum([
-            count
-            for ninemer, count in Counter(all_9mers).items()
-            if count > 1
-        ])
-        score = - (9.0 * number_of_non_unique_9mers) / len(sequence)
+        all_9mers = [sequence[i : i + 9] for i in range(len(sequence) - 9)]
+        number_of_non_unique_9mers = sum(
+            [count for ninemer, count in Counter(all_9mers).items() if count > 1]
+        )
+        score = -(9.0 * number_of_non_unique_9mers) / len(sequence)
         return SpecEvaluation(
-            self, problem,
+            self,
+            problem,
             score=score,
             locations=[Location(0, len(sequence))],
-            message="Score: %.02f (%d non-unique ninemers)" % (
-                score, number_of_non_unique_9mers
-            )
+            message="Score: %.02f (%d non-unique ninemers)"
+            % (score, number_of_non_unique_9mers),
         )
 
     def __str__(self):
@@ -52,14 +56,14 @@ sequence = reverse_translate(random_protein_sequence(300))
 problem = DnaOptimizationProblem(
     sequence=sequence,
     constraints=[EnforceTranslation()],
-    objectives=[MinimizeNinemersScore()]
+    objectives=[MinimizeNinemersScore()],
 )
 
-print ("\n=== Status before optimization ===")
-print (problem.objectives_text_summary())
+print("\n=== Status before optimization ===")
+print(problem.objectives_text_summary())
 
 problem.optimize()
 
-print ("\n=== Status after optimization ===")
-print (problem.objectives_text_summary())
-print (problem.constraints_text_summary(failed_only=True))
+print("\n=== Status after optimization ===")
+print(problem.objectives_text_summary())
+print(problem.constraints_text_summary(failed_only=True))

@@ -8,20 +8,20 @@ problem = DnaOptimizationProblem(
     sequence=random_dna_sequence(10000),
     constraints=[
         AvoidPattern("BsaI_site"),
-        EnforceGCContent(mini=0.3, maxi=0.7, window=50)
+        EnforceGCContent(mini=0.3, maxi=0.7, window=50),
     ],
-    objectives=[EnforceGCContent(target=0.4)]
+    objectives=[EnforceGCContent(target=0.4)],
 )
 
-print ("\n\n=== Status before optimization ===")
+print("\n\n=== Status before optimization ===")
 print(problem.constraints_text_summary())
 print(problem.objectives_text_summary())
 
-print ("Now solving constraints...")
+print("Now solving constraints...")
 problem.resolve_constraints()
-print ("Done. Now optimizing objectives...")
+print("Done. Now optimizing objectives...")
 problem.optimize()
 
-print ("\n\n=== Status after optimization ===\n")
-print (problem.constraints_text_summary())
-print (problem.objectives_text_summary())
+print("\n\n=== Status after optimization ===\n")
+print(problem.constraints_text_summary())
+print(problem.objectives_text_summary())

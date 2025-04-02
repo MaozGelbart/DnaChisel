@@ -4,6 +4,7 @@ In this example we create a 1000bp random sequence, then edit out every match
 with E. coli that is 14bp or longer.
 
 """
+
 import os
 from genome_collector import GenomeCollection
 from dnachisel import (
@@ -26,7 +27,7 @@ problem = DnaOptimizationProblem(
             blast_db=ecoli_blastdb,
             min_align_length=13,
             perc_identity=100,
-            word_size=5, # The bigger the word size, the faster
+            word_size=5,  # The bigger the word size, the faster
             e_value=1e20,
             # ungapped=False
         )

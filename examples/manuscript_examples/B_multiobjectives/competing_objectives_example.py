@@ -15,9 +15,7 @@ specifications = {
     "~unique_kmers": dc.UniquifyAllKmers(20),
     "~gc(39%)": dc.EnforceGCContent(target=0.39, window=200),
 }
-class_to_label = {
-    spec.__class__: label for label, spec in specifications.items()
-}
+class_to_label = {spec.__class__: label for label, spec in specifications.items()}
 sequence = dc.load_record("record.gb")
 
 
@@ -47,14 +45,10 @@ def get_scores_from_problem(problem):
 
 profiles = OrderedDict()
 for spec in specifications:
-    profiles[spec + " alone"] = {
-        s: (1 if s == spec else 0) for s in specifications
-    }
+    profiles[spec + " alone"] = {s: (1 if s == spec else 0) for s in specifications}
 profiles["equal weights"] = {spec: 1 for spec in specifications}
 for spec in specifications:
-    profiles[spec + " 5x"] = {
-        s: (5 if s == spec else 1) for s in specifications
-    }
+    profiles[spec + " 5x"] = {s: (5 if s == spec else 1) for s in specifications}
 
 # PERFORM OPTIMIZATIONS FOR EACH PROFILE
 
@@ -78,4 +72,3 @@ ax.legend(bbox_to_anchor=(1.05, 1), frameon=False)
 ax.figure.set_size_inches((5, 12))
 ax.set_xscale("log")
 ax.figure.savefig("competing_objectives_optimization.svg", bbox_inches="tight")
-

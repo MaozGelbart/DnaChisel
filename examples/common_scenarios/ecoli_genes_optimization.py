@@ -27,10 +27,8 @@ for feature in genbank_record.features:
         if (len(location) % 3 == 0) and len(location) > 100:
             gene_constraints = [
                 EnforceTranslation(location=location),
-                AvoidPattern("BsmBI_site", location, strand='both'),
-                EnforceGCContent(
-                    mini=0.40, maxi=0.60, window=150, location=location
-                ),
+                AvoidPattern("BsmBI_site", location, strand="both"),
+                EnforceGCContent(mini=0.40, maxi=0.60, window=150, location=location),
             ]
             constraints.extend(gene_constraints)
 problem = DnaOptimizationProblem(genbank_record, constraints)
