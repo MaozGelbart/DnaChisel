@@ -3,6 +3,7 @@ import numpy as np
 
 # TEST PARAMETERS AUTO-SETTINGS
 
+
 def test_parameterization():
     def all_none(variables):
         return all([c is None for c in variables])
@@ -64,7 +65,9 @@ def test_parameterization():
         assert o5.amount_percent == 5
         assert all_none([o5.minimum, o5.minimum_percent])
 
+
 # TEST OBJECTIVES
+
 
 def test_whole_sequence_change_objective_100():
     np.random.seed(123)
@@ -84,6 +87,7 @@ def test_whole_sequence_change_objective_40():
     problem.optimize()
     assert problem.number_of_edits() == 20
 
+
 def test_whole_sequence_change_objective_4():
     np.random.seed(123)
     problem = dc.DnaOptimizationProblem(
@@ -93,10 +97,11 @@ def test_whole_sequence_change_objective_4():
     problem.optimize()
     assert problem.number_of_edits() == 4
 
+
 def test_whole_sequence_change_objective_20_going_down():
     np.random.seed(123)
     problem = dc.DnaOptimizationProblem(
-        sequence=20*"AT",
+        sequence=20 * "AT",
         constraints=[dc.AvoidPattern("ATA")],
         objectives=[dc.EnforceChanges(amount=20)],
     )
@@ -106,7 +111,9 @@ def test_whole_sequence_change_objective_20_going_down():
     problem.optimize()
     assert problem.number_of_edits() == 20
 
+
 # TEST CONSTRAINTS
+
 
 def test_whole_sequence_change_constraint_100():
     np.random.seed(123)
@@ -128,6 +135,7 @@ def test_whole_sequence_change_constraint_40():
     problem.resolve_constraints()
     assert 25 >= problem.number_of_edits() >= 20
 
+
 def test_whole_sequence_change_constraint_4():
     np.random.seed(123)
     problem = dc.DnaOptimizationProblem(
@@ -139,7 +147,9 @@ def test_whole_sequence_change_constraint_4():
     problem.resolve_constraints()
     assert 6 >= problem.number_of_edits() >= 4
 
+
 # TEST SCENARIOS
+
 
 def test_maximal_protein_sequence_change():
     np.random.seed(123)
@@ -155,7 +165,9 @@ def test_maximal_protein_sequence_change():
     assert problem.number_of_edits() == 238
     assert dc.translate(problem.sequence) == protein
 
+
 # TEST WITH INDICES
+
 
 def test_enforce_changes_with_indices_as_constraint():
     np.random.seed(123)

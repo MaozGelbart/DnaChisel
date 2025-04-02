@@ -12,8 +12,6 @@ def test_random_compatible_dna_sequence():
         AvoidPattern("ATC"),
     ]
     seq = random_compatible_dna_sequence(1000, constraints=constraints)
-    problem = DnaOptimizationProblem(
-        sequence=seq, constraints=constraints, logger=None
-    )
+    problem = DnaOptimizationProblem(sequence=seq, constraints=constraints, logger=None)
     assert "ATC" not in seq
     assert problem.all_constraints_pass()

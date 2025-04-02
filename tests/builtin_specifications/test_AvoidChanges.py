@@ -25,18 +25,16 @@ def test_avoid_change_as_objectives_basics():
         problem = DnaOptimizationProblem(
             sequence=sequence,
             objectives=[
-                EnforceGCContent(
-                    mini=0.45, maxi=0.55, window=80
-                ).copy_with_changes(locations_span=300),
+                EnforceGCContent(mini=0.45, maxi=0.55, window=80).copy_with_changes(
+                    locations_span=300
+                ),
                 AvoidChanges(boost=boost).as_passive_objective(),
             ],
             logger=None,
         )
 
         problem.optimize()
-        differences = sequences_differences(
-            problem.sequence, problem.sequence_before
-        )
+        differences = sequences_differences(problem.sequence, problem.sequence_before)
         results.append(differences)
     assert results[0] > 40
     assert results[0] > results[1] > results[2] > results[3]
@@ -51,18 +49,16 @@ def test_avoid_change_circular():
         problem = CircularDnaOptimizationProblem(
             sequence=sequence,
             objectives=[
-                EnforceGCContent(
-                    mini=0.45, maxi=0.55, window=80
-                ).copy_with_changes(locations_span=300),
+                EnforceGCContent(mini=0.45, maxi=0.55, window=80).copy_with_changes(
+                    locations_span=300
+                ),
                 AvoidChanges(boost=boost).as_passive_objective(),
             ],
             logger=None,
         )
 
         problem.optimize()
-        differences = sequences_differences(
-            problem.sequence, problem.sequence_before
-        )
+        differences = sequences_differences(problem.sequence, problem.sequence_before)
         results.append(differences)
     assert results[0] > 40
     assert results[0] > results[1] > results[2] > results[3]

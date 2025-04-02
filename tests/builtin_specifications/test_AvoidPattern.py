@@ -1,4 +1,5 @@
 """Example of use of the AvoidPAttern specification"""
+
 from io import StringIO
 from dnachisel import (
     DnaOptimizationProblem,
@@ -68,7 +69,9 @@ def test_AvoidPattern_on_strands():
     # Negative strand only
     sequence = "CATGCTATGC"
     problem = DnaOptimizationProblem(
-        sequence, constraints=[AvoidPattern("CAT", location=(0, 10, -1))], logger=None,
+        sequence,
+        constraints=[AvoidPattern("CAT", location=(0, 10, -1))],
+        logger=None,
     )
     problem.resolve_constraints()
     assert "CAT" in problem.sequence
@@ -77,7 +80,9 @@ def test_AvoidPattern_on_strands():
     # Negative strand only
     sequence = "CATGCTATGC"
     problem = DnaOptimizationProblem(
-        sequence, constraints=[AvoidPattern("CAT", location=(0, 10, -1))], logger=None,
+        sequence,
+        constraints=[AvoidPattern("CAT", location=(0, 10, -1))],
+        logger=None,
     )
     problem.resolve_constraints()
     assert "CAT" in problem.sequence
@@ -86,7 +91,9 @@ def test_AvoidPattern_on_strands():
     # Both strands
     sequence = "CATGCTATGC"
     problem = DnaOptimizationProblem(
-        sequence, constraints=[AvoidPattern("CAT")], logger=None,
+        sequence,
+        constraints=[AvoidPattern("CAT")],
+        logger=None,
     )
     problem.resolve_constraints()
     assert "CAT" not in problem.sequence
@@ -169,7 +176,9 @@ def test_avoid_pattern_options():
     assert pattern not in problem.sequence
 
     problem = DnaOptimizationProblem(
-        sequence=sequence, constraints=[AvoidPattern(pattern, strand=-1)], logger=None,
+        sequence=sequence,
+        constraints=[AvoidPattern(pattern, strand=-1)],
+        logger=None,
     )
     problem.resolve_constraints()
     assert problem.all_constraints_pass()

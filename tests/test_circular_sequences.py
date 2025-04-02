@@ -19,9 +19,7 @@ def test_circular_sequence_basic():
             sequence=dna_sequence,
             constraints=[
                 dc.AvoidPattern("BsmBI_site"),
-                dc.EnforceGCContent(
-                    mini=0.4, maxi=0.6, location=(150, 250), window=50
-                ),
+                dc.EnforceGCContent(mini=0.4, maxi=0.6, location=(150, 250), window=50),
                 dc.UniquifyAllKmers(k=9, location=(10, 100)),
             ],
             logger=None,
@@ -32,8 +30,7 @@ def test_circular_sequence_basic():
 
 
 def test_circular_sequence_optimize_with_report(tmpdir):
-    """Test that the custom function of CircularDnaOptimizationProblems works.
-    """
+    """Test that the custom function of CircularDnaOptimizationProblems works."""
     np.random.seed(123)
     # Until the feature gets more battle-test, we're making sure it works
     # across a range of sequences.
@@ -48,9 +45,7 @@ def test_circular_sequence_optimize_with_report(tmpdir):
         sequence=dna_sequence,
         constraints=[
             dc.AvoidPattern("BsmBI_site"),
-            dc.EnforceGCContent(
-                mini=0.4, maxi=0.6, location=(150, 250), window=50
-            ),
+            dc.EnforceGCContent(mini=0.4, maxi=0.6, location=(150, 250), window=50),
             dc.UniquifyAllKmers(k=9, location=(10, 100)),
         ],
         logger=None,

@@ -59,9 +59,7 @@ def experiment_2(seed=123):
 def create_test_sequences_files():
     """File test_sequences.csv has been created by running this function"""
     for i, experiment in enumerate([experiment_1, experiment_2]):
-        sequences_by_seed = [
-            (seed, experiment(seed)) for seed in (123, 456, 789)
-        ]
+        sequences_by_seed = [(seed, experiment(seed)) for seed in (123, 456, 789)]
         with open("test_sequences_%d.csv" % (i + 1), "w") as f:
             f.write(
                 "\n".join(

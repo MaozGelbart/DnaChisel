@@ -20,9 +20,7 @@ def test_genbank_import_from_record():
 def test_genbank_import_from_record_unknown_specs():
     record = load_record(example_sequence_path)
     with pytest.raises(TypeError):
-        _ = DnaOptimizationProblem.from_record(
-            record, specifications_dict={}
-        )
+        _ = DnaOptimizationProblem.from_record(record, specifications_dict={})
 
 
 def test_genbank_import_from_filepath():

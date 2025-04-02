@@ -6,12 +6,12 @@ from dnachisel import SequencePattern, MotifPssmPattern
 
 @pytest.fixture
 def test_single_motif_filepath():
-    return str(Path(__file__).parent / 'data' / 'single_motif.meme.txt')
+    return str(Path(__file__).parent / "data" / "single_motif.meme.txt")
 
 
 @pytest.fixture
 def test_multiple_motif_filepath():
-    return str(Path(__file__).parent / 'data' / 'multiple_motifs.meme.txt')
+    return str(Path(__file__).parent / "data" / "multiple_motifs.meme.txt")
 
 
 def test_patterns_from_string():
@@ -20,7 +20,7 @@ def test_patterns_from_string():
     pattern = SequencePattern.from_string("BsmBI_site")
     assert pattern.expression == "CGTCTC"
     pattern = SequencePattern.from_string("5x2mer")
-    assert pattern.expression == '([ATGC]{2})\\1{4}'
+    assert pattern.expression == "([ATGC]{2})\\1{4}"
 
 
 def test_pssm_pattern_from_file(
@@ -40,7 +40,7 @@ def test_pssm_pattern_from_file(
 
 
 def test_pssm_from_sequences():
-    seqs = ['ACGT', 'ACCT', 'AAGT']
+    seqs = ["ACGT", "ACCT", "AAGT"]
     motif_name = "test motif"
     pat = MotifPssmPattern.from_sequences(seqs, name=motif_name, relative_threshold=0.9)
     assert isinstance(pat, MotifPssmPattern)

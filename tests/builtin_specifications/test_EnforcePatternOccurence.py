@@ -162,7 +162,10 @@ def test_enforce_pattern_options():
         sequence=sequence,
         constraints=[
             dc.EnforcePatternOccurence(
-                pattern, occurences=1, strand=1, location=Location(1, 6, strand=-1),
+                pattern,
+                occurences=1,
+                strand=1,
+                location=Location(1, 6, strand=-1),
             )
         ],
         logger=None,

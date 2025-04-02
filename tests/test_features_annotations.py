@@ -16,9 +16,7 @@ def random_record(length, seed=None):
 
 def test_annotate_record():
     random_rec = random_record(100)
-    annotate_record(
-        random_rec, location=(10, 50), feature_type="CDS", label="my_label"
-    )
+    annotate_record(random_rec, location=(10, 50), feature_type="CDS", label="my_label")
     assert len(random_rec.features) == 1
     feature = random_rec.features[0]
     assert feature.location.start == 10

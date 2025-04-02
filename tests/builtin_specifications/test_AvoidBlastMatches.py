@@ -23,8 +23,7 @@ def test_avoid_blast_matches_with_list():
         sequences=avoided_seqs, min_align_length=8, word_size=7
     )
     problem = DnaOptimizationProblem(
-        sequence=sequence, constraints=[constraint],
-        logger=None
+        sequence=sequence, constraints=[constraint], logger=None
     )
     assert not problem.all_constraints_pass()
     cst_eval = constraint.evaluate(problem)
@@ -40,11 +39,9 @@ def test_avoid_phage_blast_matches():
     problem = DnaOptimizationProblem(
         sequence=random_dna_sequence(30, seed=123),
         constraints=[
-            AvoidBlastMatches(
-                blast_db=blastdb, min_align_length=10, word_size=7
-            )
+            AvoidBlastMatches(blast_db=blastdb, min_align_length=10, word_size=7)
         ],
-        logger=None
+        logger=None,
     )
     assert not problem.all_constraints_pass()
     problem.resolve_constraints()

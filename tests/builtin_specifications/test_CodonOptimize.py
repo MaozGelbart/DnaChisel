@@ -36,14 +36,12 @@ def test_codon_optimize_match_usage_random_sequence():
     problem = DnaOptimizationProblem(
         sequence=sequence,
         constraints=[EnforceTranslation()],
-        objectives=[
-            CodonOptimize(species="e_coli", method="match_codon_usage")
-        ],
+        objectives=[CodonOptimize(species="e_coli", method="match_codon_usage")],
         logger=None,
     )
     assert -600 < problem.objective_scores_sum() < -550
     problem.optimize()
-    print (problem.objective_scores_sum())
+    print(problem.objective_scores_sum())
     assert -17 < problem.objective_scores_sum()
 
 
@@ -74,9 +72,7 @@ def test_codon_optimize_match_usage_short_sequence():
     numpy.random.seed(123)
     protein = "DDDKKKKKK"
     sequence = reverse_translate(protein)
-    harmonization = CodonOptimize(
-        species="b_subtilis", method="match_codon_usage"
-    )
+    harmonization = CodonOptimize(species="b_subtilis", method="match_codon_usage")
     problem = DnaOptimizationProblem(
         sequence=sequence,
         constraints=[EnforceTranslation()],

@@ -67,9 +67,7 @@ def test_EnforceTranslation_error_location_smaller_than_translation():
         _ = DnaOptimizationProblem(
             sequence=sequence,
             constraints=[
-                EnforceTranslation(
-                    translation=random_protein_sequence(30, seed=111)
-                )
+                EnforceTranslation(translation=random_protein_sequence(30, seed=111))
             ],
             logger=None,
         )
@@ -97,9 +95,7 @@ def test_EnforceTranslation_bacterial_valine():
         )
         assert problem.constraints[0].translation == "MLLTMMVTTTTVMVL"
         problem.optimize()
-        protein_after = translate(
-            problem.sequence, table_name, assume_start_codon=True
-        )
+        protein_after = translate(problem.sequence, table_name, assume_start_codon=True)
         assert protein_after == "M" + protein
         assert problem.sequence[:3] == first_codon_after
 
