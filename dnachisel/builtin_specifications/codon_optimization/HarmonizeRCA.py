@@ -175,5 +175,5 @@ class HarmonizeRCA(BaseCodonOptimizationClass):
             original_species = self.original_species
         else:
             original_species = "custom table"
-        short_label += " (%s)" % self.species
+        # short_label += " (%s)" % self.species
         return short_label + original_species + " -> " + target_species + ")"
