@@ -67,19 +67,16 @@ Infos
 (you can omit the ``[reports]`` suffix if you intend to use dnachisel only
 for sequence optimization, without generating figures or PDF reports)
 
-**Web documentation:**
+**Web documentation:** `<https://edinburgh-genome-foundry.github.io/DnaChisel/>`_
 
-`<https://edinburgh-genome-foundry.github.io/DnaChisel/>`_
+**Github Page:** `<https://github.com/Edinburgh-Genome-Foundry/DnaChisel>`_
 
-**Github Page**
+**Live demo:** `<http://cuba.genomefoundry.org/sculpt_a_sequence>`_
 
-`<https://github.com/Edinburgh-Genome-Foundry/DnaChisel>`_
+**License:** MIT
 
-**Live demo**
+Copyright 2017 Edinburgh Genome Foundry, University of Edinburgh
 
-`<http://cuba.genomefoundry.org/sculpt_a_sequence>`_
-
-**License:** MIT, Copyright Edinburgh Genome Foundry
 
 More biology software
 -----------------------

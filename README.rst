@@ -199,7 +199,7 @@ License = MIT
 
 DNA Chisel is an open-source software originally written at the `Edinburgh Genome Foundry
 <http://edinburgh-genome-foundry.github.io/home.html>`_ by `Zulko <https://github.com/Zulko>`_
-and `released on Github <https://github.com/Edinburgh-Genome-Foundry/DnaChisel>`_ under the MIT licence (Copyright 2017 Edinburgh Genome Foundry). Everyone is welcome to contribute!
+and `released on Github <https://github.com/Edinburgh-Genome-Foundry/DnaChisel>`_ under the MIT licence (Copyright 2017 Edinburgh Genome Foundry, University of Edinburgh). Everyone is welcome to contribute!
 
 More biology software
 ---------------------
