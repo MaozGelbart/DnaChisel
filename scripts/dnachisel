@@ -61,9 +61,9 @@ if __name__ == "__main__":
 
     if target.lower().endswith(".gb"):  # save genbank
         if params["--with_sequence_edits"]:
-            annotate_edits=True
+            annotate_edits = True
         else:
-            annotate_edits=False
+            annotate_edits = False
         verbose_print("Resolving Constraints...")
         problem.resolve_constraints()
         verbose_print("Optimizing...")
