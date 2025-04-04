@@ -45,7 +45,7 @@ tests = [
 dnachisel = "dnachisel.scripts.dnachisel:main"
 
 [project.urls]
-Homepage = "https://github.com/Edinburgh-Genome-Foundry/PKG"
+Homepage = "https://github.com/Edinburgh-Genome-Foundry/dnachisel"
 
 [build-system]
 requires = ["setuptools"]
