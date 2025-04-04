@@ -30,12 +30,12 @@ Example to output the result to a zip archive:
 >>> dnachisel annotated_record.gb optimization_report.zip
 """
 
-import os
-from docopt import docopt
-from dnachisel import DnaOptimizationProblem, CircularDnaOptimizationProblem
-
 
 def main():
+    import os
+    from docopt import docopt
+    from dnachisel import DnaOptimizationProblem, CircularDnaOptimizationProblem
+
     params = docopt(__doc__)
     source, target = params["<source>"], params["<target>"]
 

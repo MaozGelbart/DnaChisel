@@ -42,7 +42,7 @@ tests = [
 ]
 
 [project.scripts]
-dnachisel = "dnachisel.scripts.dnachisel:main"
+dnachisel = "dnachisel.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/Edinburgh-Genome-Foundry/dnachisel"
