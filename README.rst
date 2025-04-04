@@ -180,12 +180,6 @@ recommended to use DNA Chisel interactively via Python scripts. Also install
 `GeneBlocks <https://edinburgh-genome-foundry.github.io/Geneblocks>`_ and its
 dependencies if you wish to include a plot of sequence edits in the report.
 
-Alternatively, you can unzip the sources in a folder and type
-
-.. code::
-
-    python setup.py install
-
 Optionally, also install Bowtie to be able to use ``AvoidMatches`` (which
 removes short homologies with existing genomes). On Ubuntu:
 
