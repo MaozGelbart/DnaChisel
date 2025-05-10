@@ -51,8 +51,8 @@ Homepage = "https://github.com/Edinburgh-Genome-Foundry/dnachisel"
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools]
-include-package-data = true
-
 [tool.setuptools.packages.find]
-exclude = ["docs"]
+exclude = ["docs*", "examples*", "tests*"]
+
+[tool.setuptools.package-data]
+dnachisel = ["biotools/data/*", "reports/assets/*"]
